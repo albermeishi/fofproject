@@ -13,7 +13,7 @@ public class AccountController {
     @Autowired
     AccountService accountService;
 
-    @RequestMapping(value = "/list",   method = RequestMethod.GET )
+    @RequestMapping(value = "/list",   method = RequestMethod.GET)
     public List<Account> getAccounts() {
         return accountService.findAccountList();
     }
