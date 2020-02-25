@@ -1,15 +1,25 @@
 
 package com.fof.web;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.fof.dao.AccountMapper;
 import com.fof.entity.Account;
+import com.fof.exception.ServiceException;
+import com.fof.response.ResponseData;
 import com.fof.service.AccountService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.List;
 @RestController
 @RequestMapping("/account")
+@SuppressWarnings(value={"unchecked", "deprecation"})
 public class AccountController {
 
 	
@@ -18,9 +28,15 @@ public class AccountController {
     @Autowired
     AccountMapper accountMapper;
     @PostMapping("/selectListByCondition")
-    public List<Account> selectListByCondition(@RequestBody Account account) {
-        //return accountService.findAccountList();
-        return accountMapper.selectListByCondition(account);
+    public ResponseData<List<Account>> selectListByCondition(@RequestBody Account account) {
+    	List<Account> list=accountService.findAccountList();
+    	if(list.size()>0){
+    		throw new ServiceException(1003,"操作异常");
+    	}
+    	return new ResponseData<List<Account>>(list);
+    	
+        
+        //return accountMapper.selectListByCondition(account);
     }
     @PostMapping("/selectOneByCondition")
     public Account selectOneByCondition(@RequestBody Account account) {
