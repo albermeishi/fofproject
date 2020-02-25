@@ -1,23 +1,57 @@
 package com.fof.web;
 
+import com.fof.dao.AccountMapper;
 import com.fof.entity.Account;
 import com.fof.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 @RestController
 @RequestMapping("/account")
 public class AccountController {
 
+	
     @Autowired
     AccountService accountService;
-
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public List<Account> getAccounts() {
-        return accountService.findAccountList();
+    @Autowired
+    AccountMapper accountMapper;
+    @PostMapping("/selectListByCondition")
+    public List<Account> selectListByCondition(@RequestBody Account account) {
+        //return accountService.findAccountList();
+        return accountMapper.selectListByCondition(account);
     }
-
+    @PostMapping("/selectOneByCondition")
+    public Account selectOneByCondition(@RequestBody Account account) {
+        return accountMapper.selectOneByCondition(account);
+    }
+    
+    @PostMapping("/insert")
+    public int insert(@RequestBody Account account) {
+    	return accountMapper.insert(account);
+    }
+    
+    @PostMapping("/updateByPrimaryKeySelective")
+    public int updateByPrimaryKeySelective(@RequestBody Account account) {
+    	return accountMapper.updateByPrimaryKeySelective(account);
+    }
+    @PostMapping("/insertSelective")
+    public int insertSelective(@RequestBody Account account) {
+    	//return accountMapper.insertSelective(account);
+    	accountMapper.insertSelective(account);
+    	return account.getId();
+    }
+    
+    @GetMapping("selectByPrimaryKey/{id}")
+    public Account selectByPrimaryKey(@PathVariable("id") int id) {
+        return accountMapper.selectByPrimaryKey(id);
+    }
+    
+    
+    
+    
+    
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Account getAccountById(@PathVariable("id") int id) {
         return accountService.findAccount(id);

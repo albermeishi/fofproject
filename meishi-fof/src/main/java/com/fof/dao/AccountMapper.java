@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.fof.entity.Account;
+import com.fof.entity.Attachments;
 @Mapper
 public interface AccountMapper {
 	
@@ -18,10 +19,9 @@ public interface AccountMapper {
     int insertSelective(Account record);
     Account selectByPrimaryKey(Integer id);
     int updateByPrimaryKeySelective(Account record);
-    int updateByPrimaryKey(Account record);
-    
+  
     Account selectOneByCondition(Account record);
-    Account selectListByCondition(Account record);
+    List<Account> selectListByCondition(Account record);
     
     
 //	@Insert("insert into account(name, money) values(#{name}, #{money})")
@@ -42,7 +42,7 @@ public interface AccountMapper {
 
     @Select("select id, name as name, money as money from account where id = #{id}")
     Account findAccount(@Param("id") int id);
-    
+
 
 //    @Select("select id, name as name, money as money from account")
 //    List<Account> findAccountList();

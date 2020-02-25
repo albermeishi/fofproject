@@ -33,23 +33,18 @@
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.fof.entity.Account">
     update account
-    <set>
+     <trim prefix="set" suffixOverrides=",">
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="money != null">
         money = #{money,jdbcType=DOUBLE},
       </if>
-    </set>
+   </trim>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fof.entity.Account">
-    update account
-    set name = #{name,jdbcType=VARCHAR},
-      money = #{money,jdbcType=DOUBLE}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer">
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.fof.entity.Account">
     select
     <include refid="Base_Column_List" />
     from account

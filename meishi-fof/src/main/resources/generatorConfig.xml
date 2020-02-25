@@ -19,7 +19,7 @@
         </commentGenerator>
         <!--数据库链接URL，用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-            connectionURL="jdbc:mysql://192.168.6.128:12345/test" userId="root" password="123456">
+            connectionURL="jdbc:mysql://39.96.14.212:33306/xxl_job" userId="super" password="insit@2008">
             </jdbcConnection>
         <javaTypeResolver>
             <!-- This property is used to specify whether MyBatis Generator should 
@@ -59,7 +59,7 @@
             <generatedKey column="id" sqlStatement="Mysql" identity="true" />
         </table>-->
             
-       <table tableName="account2"  domainObjectName="Account2" 
+       <table tableName="enter_flow_company"  domainObjectName="EnterFlowCompany"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
