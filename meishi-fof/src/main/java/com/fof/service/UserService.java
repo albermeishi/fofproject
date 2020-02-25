@@ -5,6 +5,6 @@
  */
 package com.fof.service;
 
-public class UserService {
+public interface UserService {
 	
 }

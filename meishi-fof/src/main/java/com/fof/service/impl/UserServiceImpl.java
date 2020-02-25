@@ -5,10 +5,14 @@
  */
 package com.fof.service.impl;
 
+import com.fof.service.UserService;
+import org.springframework.stereotype.Service;
+
 /**
  * @author meix
  *
  */
-public interface UserServiceImpl {
+@Service
+public class UserServiceImpl implements UserService {
 
 }
