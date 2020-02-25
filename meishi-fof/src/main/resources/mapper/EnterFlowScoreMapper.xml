@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fof.dao.EnterFlowScoreMapper">
+<sql id="Base_Column_List">
+    id, userId, userName, scoreType, enterFlowId, tagId, sourceId, scoreBigItemCode, 
+    scoreBigItemCodeText, scoreSmalItemCodeText, scoreSmalltemCode, currentScore, systemScore, 
+    totalScore, createTime, updateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.fof.entity.EnterFlowScore" >
+    select 
+    <include refid="Base_Column_List" />
+    from enter_flow_score
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+ <insert id="insert" useGeneratedKeys="true"   keyProperty="id"  parameterType="com.fof.entity.EnterFlowScore">
+    insert into enter_flow_score (userId, userName, 
+      scoreType, enterFlowId, tagId, 
+      sourceId, scoreBigItemCode, scoreBigItemCodeText, 
+      scoreSmalItemCodeText, scoreSmalltemCode, 
+      currentScore, systemScore, totalScore, 
+      createTime, updateTime)
+    values (#{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, 
+      #{scoreType,jdbcType=INTEGER}, #{enterFlowId,jdbcType=BIGINT}, #{tagId,jdbcType=BIGINT}, 
+      #{sourceId,jdbcType=BIGINT}, #{scoreBigItemCode,jdbcType=INTEGER}, #{scoreBigItemCodeText,jdbcType=VARCHAR}, 
+      #{scoreSmalItemCodeText,jdbcType=VARCHAR}, #{scoreSmalltemCode,jdbcType=INTEGER}, 
+      #{currentScore,jdbcType=INTEGER}, #{systemScore,jdbcType=INTEGER}, #{totalScore,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true"  keyProperty="id"  parameterType="com.fof.entity.EnterFlowScore">
+    insert into enter_flow_score
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="userName != null">
+        userName,
+      </if>
+      <if test="scoreType != null">
+        scoreType,
+      </if>
+      <if test="enterFlowId != null">
+        enterFlowId,
+      </if>
+      <if test="tagId != null">
+        tagId,
+      </if>
+      <if test="sourceId != null">
+        sourceId,
+      </if>
+      <if test="scoreBigItemCode != null">
+        scoreBigItemCode,
+      </if>
+      <if test="scoreBigItemCodeText != null">
+        scoreBigItemCodeText,
+      </if>
+      <if test="scoreSmalItemCodeText != null">
+        scoreSmalItemCodeText,
+      </if>
+      <if test="scoreSmalltemCode != null">
+        scoreSmalltemCode,
+      </if>
+      <if test="currentScore != null">
+        currentScore,
+      </if>
+      <if test="systemScore != null">
+        systemScore,
+      </if>
+      <if test="totalScore != null">
+        totalScore,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreType != null">
+        #{scoreType,jdbcType=INTEGER},
+      </if>
+      <if test="enterFlowId != null">
+        #{enterFlowId,jdbcType=BIGINT},
+      </if>
+      <if test="tagId != null">
+        #{tagId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceId != null">
+        #{sourceId,jdbcType=BIGINT},
+      </if>
+      <if test="scoreBigItemCode != null">
+        #{scoreBigItemCode,jdbcType=INTEGER},
+      </if>
+      <if test="scoreBigItemCodeText != null">
+        #{scoreBigItemCodeText,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreSmalItemCodeText != null">
+        #{scoreSmalItemCodeText,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreSmalltemCode != null">
+        #{scoreSmalltemCode,jdbcType=INTEGER},
+      </if>
+      <if test="currentScore != null">
+        #{currentScore,jdbcType=INTEGER},
+      </if>
+      <if test="systemScore != null">
+        #{systemScore,jdbcType=INTEGER},
+      </if>
+      <if test="totalScore != null">
+        #{totalScore,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fof.entity.EnterFlowScore">
+    update enter_flow_score
+    <trim prefix="set" suffixOverrides=",">
+      <if test="userId != null">
+        userId = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreType != null">
+        scoreType = #{scoreType,jdbcType=INTEGER},
+      </if>
+      <if test="enterFlowId != null">
+        enterFlowId = #{enterFlowId,jdbcType=BIGINT},
+      </if>
+      <if test="tagId != null">
+        tagId = #{tagId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceId != null">
+        sourceId = #{sourceId,jdbcType=BIGINT},
+      </if>
+      <if test="scoreBigItemCode != null">
+        scoreBigItemCode = #{scoreBigItemCode,jdbcType=INTEGER},
+      </if>
+      <if test="scoreBigItemCodeText != null">
+        scoreBigItemCodeText = #{scoreBigItemCodeText,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreSmalItemCodeText != null">
+        scoreSmalItemCodeText = #{scoreSmalItemCodeText,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreSmalltemCode != null">
+        scoreSmalltemCode = #{scoreSmalltemCode,jdbcType=INTEGER},
+      </if>
+      <if test="currentScore != null">
+        currentScore = #{currentScore,jdbcType=INTEGER},
+      </if>
+      <if test="systemScore != null">
+        systemScore = #{systemScore,jdbcType=INTEGER},
+      </if>
+      <if test="totalScore != null">
+        totalScore = #{totalScore,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+   
+   </trim>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+ 
+
+  <select id="selectOneByCondition" resultType="com.fof.entity.EnterFlowScore">
+       select 
+    <include refid="Base_Column_List" />
+    from enter_flow_score
+			<where>
+		            <if test="userId != null">
+      and  userId = #{userId,jdbcType=BIGINT}
+      </if>
+      <if test="scoreType != null">
+      and  scoreType = #{scoreType,jdbcType=INTEGER}
+      </if>
+      <if test="enterFlowId != null">
+      and   enterFlowId = #{enterFlowId,jdbcType=BIGINT}
+      </if>
+      <if test="tagId != null">
+      and   tagId = #{tagId,jdbcType=BIGINT}
+      </if>
+      <if test="sourceId != null">
+      and  sourceId = #{sourceId,jdbcType=BIGINT}
+      </if>
+      <if test="scoreBigItemCode != null">
+      and   scoreBigItemCode = #{scoreBigItemCode,jdbcType=INTEGER}
+      </if>
+
+      <if test="scoreSmalltemCode != null">
+      and  scoreSmalltemCode = #{scoreSmalltemCode,jdbcType=INTEGER}
+      </if>
+   	  </where>
+   	   order by id desc 
+       limit 1 ;
+	</select>
+	
+	<select id="selectListByCondition" resultType="com.fof.entity.EnterFlowScore">
+       select 
+    <include refid="Base_Column_List" />
+    from enter_flow_score
+			<where>
+		                      <if test="userId != null">
+      and  userId = #{userId,jdbcType=BIGINT}
+      </if>
+      <if test="scoreType != null">
+      and  scoreType = #{scoreType,jdbcType=INTEGER}
+      </if>
+      <if test="enterFlowId != null">
+      and   enterFlowId = #{enterFlowId,jdbcType=BIGINT}
+      </if>
+      <if test="tagId != null">
+      and   tagId = #{tagId,jdbcType=BIGINT}
+      </if>
+      <if test="sourceId != null">
+      and  sourceId = #{sourceId,jdbcType=BIGINT}
+      </if>
+      <if test="scoreBigItemCode != null">
+      and   scoreBigItemCode = #{scoreBigItemCode,jdbcType=INTEGER}
+      </if>
+
+      <if test="scoreSmalltemCode != null">
+       and  scoreSmalltemCode = #{scoreSmalltemCode,jdbcType=INTEGER}
+      </if>
+   	  </where>
+   	   order by id desc ;
+	</select>
+
+
+
+</mapper>

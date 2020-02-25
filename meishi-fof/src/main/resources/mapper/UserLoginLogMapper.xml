@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fof.dao.UserLoginLogMapper">
+
+<sql id="Base_Column_List">
+    id, userId, userName, loginIp, createTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.fof.entity.EnterFlowCompany" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_login_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" useGeneratedKeys="true"  keyProperty="id"  parameterType="com.fof.entity.UserLoginLog">
+    insert into user_login_log (userId, userName, 
+      loginIp, createTime)
+    values (#{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, 
+      #{loginIp,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true"  keyProperty="id"  parameterType="com.fof.entity.UserLoginLog">
+    insert into user_login_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="userName != null">
+        userName,
+      </if>
+      <if test="loginIp != null">
+        loginIp,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null">
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fof.entity.UserLoginLog">
+    update user_login_log
+    <trim prefix="set" suffixOverrides=",">
+      <if test="userId != null">
+        userId = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null">
+        loginIp = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+ </trim>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+ 
+ <select id="selectOneByCondition" resultType="com.fof.entity.UserLoginLog">
+        select 
+     <include refid="Base_Column_List" />
+      from user_login_log
+	    <where>
+		       <if test="userId != null">
+        and userId = #{userId,jdbcType=BIGINT},
+         </if>
+      <if test="userName != null">
+      and  userName = #{userName,jdbcType=VARCHAR}
+      </if>
+   	</where>
+   	   order by id desc 
+       limit 1 ;
+	</select>
+	
+	<select id="selectListByCondition" resultType="com.fof.entity.UserLoginLog">
+      select 
+     <include refid="Base_Column_List" />
+      from user_login_log
+	    <where>
+		       <if test="userId != null">
+        and userId = #{userId,jdbcType=BIGINT},
+         </if>
+      <if test="userName != null">
+      and  userName = #{userName,jdbcType=VARCHAR}
+      </if>
+   	</where>
+   	   order by id desc ;
+	</select>
+
+
+
+</mapper>

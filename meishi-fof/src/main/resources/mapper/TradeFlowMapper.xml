@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fof.dao.TradeFlowMapper">
+
+<sql id="Base_Column_List">
+    id, simuCompanyId, simuCompanyName, simuProductId, simuProductName, fofCompanyId, 
+    fofCompanyName, fofProductId, fofProductName, fofOperatorId, fofOperatorName, boffinId, 
+    boffinIdName, createTime, updateTime, tradeUserId, tradeUserName, tradeMoney, tradeMoneyUpper, 
+    tradeShare, tradeOnine, tradeType, tradeStatus, currentFlowCode, curentFlowCodeText, 
+    accountName, accountNumber, bankName, ransomType, trafficNumber
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.fof.entity.TradeFlow" >
+    select 
+    <include refid="Base_Column_List" />
+    from trade_flow
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+<insert id="insert" useGeneratedKeys="true"  keyProperty="id"  parameterType="com.fof.entity.TradeFlow">
+    insert into trade_flow (simuCompanyId, simuCompanyName, 
+      simuProductId, simuProductName, fofCompanyId, 
+      fofCompanyName, fofProductId, fofProductName, 
+      fofOperatorId, fofOperatorName, boffinId, 
+      boffinIdName, createTime, updateTime, 
+      tradeUserId, tradeUserName, tradeMoney, 
+      tradeMoneyUpper, tradeShare, tradeOnine, 
+      tradeType, tradeStatus, currentFlowCode, 
+      curentFlowCodeText, accountName, accountNumber, 
+      bankName, ransomType, trafficNumber
+      )
+    values (#{simuCompanyId,jdbcType=BIGINT}, #{simuCompanyName,jdbcType=VARCHAR}, 
+      #{simuProductId,jdbcType=BIGINT}, #{simuProductName,jdbcType=VARCHAR}, #{fofCompanyId,jdbcType=BIGINT}, 
+      #{fofCompanyName,jdbcType=VARCHAR}, #{fofProductId,jdbcType=BIGINT}, #{fofProductName,jdbcType=VARCHAR}, 
+      #{fofOperatorId,jdbcType=BIGINT}, #{fofOperatorName,jdbcType=VARCHAR}, #{boffinId,jdbcType=BIGINT}, 
+      #{boffinIdName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{tradeUserId,jdbcType=BIGINT}, #{tradeUserName,jdbcType=VARCHAR}, #{tradeMoney,jdbcType=DECIMAL}, 
+      #{tradeMoneyUpper,jdbcType=VARCHAR}, #{tradeShare,jdbcType=DECIMAL}, #{tradeOnine,jdbcType=INTEGER}, 
+      #{tradeType,jdbcType=INTEGER}, #{tradeStatus,jdbcType=INTEGER}, #{currentFlowCode,jdbcType=INTEGER}, 
+      #{curentFlowCodeText,jdbcType=VARCHAR}, #{accountName,jdbcType=VARCHAR}, #{accountNumber,jdbcType=VARCHAR}, 
+      #{bankName,jdbcType=VARCHAR}, #{ransomType,jdbcType=INTEGER}, #{trafficNumber,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true"  keyProperty="id"  parameterType="com.fof.entity.TradeFlow">
+    insert into trade_flow
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="simuCompanyId != null">
+        simuCompanyId,
+      </if>
+      <if test="simuCompanyName != null">
+        simuCompanyName,
+      </if>
+      <if test="simuProductId != null">
+        simuProductId,
+      </if>
+      <if test="simuProductName != null">
+        simuProductName,
+      </if>
+      <if test="fofCompanyId != null">
+        fofCompanyId,
+      </if>
+      <if test="fofCompanyName != null">
+        fofCompanyName,
+      </if>
+      <if test="fofProductId != null">
+        fofProductId,
+      </if>
+      <if test="fofProductName != null">
+        fofProductName,
+      </if>
+      <if test="fofOperatorId != null">
+        fofOperatorId,
+      </if>
+      <if test="fofOperatorName != null">
+        fofOperatorName,
+      </if>
+      <if test="boffinId != null">
+        boffinId,
+      </if>
+      <if test="boffinIdName != null">
+        boffinIdName,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+      <if test="tradeUserId != null">
+        tradeUserId,
+      </if>
+      <if test="tradeUserName != null">
+        tradeUserName,
+      </if>
+      <if test="tradeMoney != null">
+        tradeMoney,
+      </if>
+      <if test="tradeMoneyUpper != null">
+        tradeMoneyUpper,
+      </if>
+      <if test="tradeShare != null">
+        tradeShare,
+      </if>
+      <if test="tradeOnine != null">
+        tradeOnine,
+      </if>
+      <if test="tradeType != null">
+        tradeType,
+      </if>
+      <if test="tradeStatus != null">
+        tradeStatus,
+      </if>
+      <if test="currentFlowCode != null">
+        currentFlowCode,
+      </if>
+      <if test="curentFlowCodeText != null">
+        curentFlowCodeText,
+      </if>
+      <if test="accountName != null">
+        accountName,
+      </if>
+      <if test="accountNumber != null">
+        accountNumber,
+      </if>
+      <if test="bankName != null">
+        bankName,
+      </if>
+      <if test="ransomType != null">
+        ransomType,
+      </if>
+      <if test="trafficNumber != null">
+        trafficNumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="simuCompanyId != null">
+        #{simuCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="simuCompanyName != null">
+        #{simuCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="simuProductId != null">
+        #{simuProductId,jdbcType=BIGINT},
+      </if>
+      <if test="simuProductName != null">
+        #{simuProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="fofCompanyId != null">
+        #{fofCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="fofCompanyName != null">
+        #{fofCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="fofProductId != null">
+        #{fofProductId,jdbcType=BIGINT},
+      </if>
+      <if test="fofProductName != null">
+        #{fofProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="fofOperatorId != null">
+        #{fofOperatorId,jdbcType=BIGINT},
+      </if>
+      <if test="fofOperatorName != null">
+        #{fofOperatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="boffinId != null">
+        #{boffinId,jdbcType=BIGINT},
+      </if>
+      <if test="boffinIdName != null">
+        #{boffinIdName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeUserId != null">
+        #{tradeUserId,jdbcType=BIGINT},
+      </if>
+      <if test="tradeUserName != null">
+        #{tradeUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeMoney != null">
+        #{tradeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeMoneyUpper != null">
+        #{tradeMoneyUpper,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeShare != null">
+        #{tradeShare,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeOnine != null">
+        #{tradeOnine,jdbcType=INTEGER},
+      </if>
+      <if test="tradeType != null">
+        #{tradeType,jdbcType=INTEGER},
+      </if>
+      <if test="tradeStatus != null">
+        #{tradeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="currentFlowCode != null">
+        #{currentFlowCode,jdbcType=INTEGER},
+      </if>
+      <if test="curentFlowCodeText != null">
+        #{curentFlowCodeText,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null">
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null">
+        #{accountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="ransomType != null">
+        #{ransomType,jdbcType=INTEGER},
+      </if>
+      <if test="trafficNumber != null">
+        #{trafficNumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fof.entity.TradeFlow">
+    update trade_flow
+   <trim prefix="set" suffixOverrides=",">
+      <if test="simuCompanyId != null">
+        simuCompanyId = #{simuCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="simuCompanyName != null">
+        simuCompanyName = #{simuCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="simuProductId != null">
+        simuProductId = #{simuProductId,jdbcType=BIGINT},
+      </if>
+      <if test="simuProductName != null">
+        simuProductName = #{simuProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="fofCompanyId != null">
+        fofCompanyId = #{fofCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="fofCompanyName != null">
+        fofCompanyName = #{fofCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="fofProductId != null">
+        fofProductId = #{fofProductId,jdbcType=BIGINT},
+      </if>
+      <if test="fofProductName != null">
+        fofProductName = #{fofProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="fofOperatorId != null">
+        fofOperatorId = #{fofOperatorId,jdbcType=BIGINT},
+      </if>
+      <if test="fofOperatorName != null">
+        fofOperatorName = #{fofOperatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="boffinId != null">
+        boffinId = #{boffinId,jdbcType=BIGINT},
+      </if>
+      <if test="boffinIdName != null">
+        boffinIdName = #{boffinIdName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeUserId != null">
+        tradeUserId = #{tradeUserId,jdbcType=BIGINT},
+      </if>
+      <if test="tradeUserName != null">
+        tradeUserName = #{tradeUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeMoney != null">
+        tradeMoney = #{tradeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeMoneyUpper != null">
+        tradeMoneyUpper = #{tradeMoneyUpper,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeShare != null">
+        tradeShare = #{tradeShare,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeOnine != null">
+        tradeOnine = #{tradeOnine,jdbcType=INTEGER},
+      </if>
+      <if test="tradeType != null">
+        tradeType = #{tradeType,jdbcType=INTEGER},
+      </if>
+      <if test="tradeStatus != null">
+        tradeStatus = #{tradeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="currentFlowCode != null">
+        currentFlowCode = #{currentFlowCode,jdbcType=INTEGER},
+      </if>
+      <if test="curentFlowCodeText != null">
+        curentFlowCodeText = #{curentFlowCodeText,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null">
+        accountName = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null">
+        accountNumber = #{accountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        bankName = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="ransomType != null">
+        ransomType = #{ransomType,jdbcType=INTEGER},
+      </if>
+      <if test="trafficNumber != null">
+        trafficNumber = #{trafficNumber,jdbcType=VARCHAR},
+      </if>
+  </trim>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectOneByCondition" resultType="com.fof.entity.TradeFlow">
+   select 
+    <include refid="Base_Column_List" />
+    from trade_flow
+			<where>
+		        <if test="simuCompanyId != null">
+       and simuCompanyId = #{simuCompanyId,jdbcType=BIGINT}
+      </if>
+      <if test="simuCompanyName != null">
+      and  simuCompanyName = #{simuCompanyName,jdbcType=VARCHAR}
+      </if>
+      <if test="simuProductId != null">
+      and  simuProductId = #{simuProductId,jdbcType=BIGINT}
+      </if>
+      <if test="simuProductName != null">
+      and  simuProductName = #{simuProductName,jdbcType=VARCHAR}
+      </if>
+      <if test="fofCompanyId != null">
+      and  fofCompanyId = #{fofCompanyId,jdbcType=BIGINT}
+      </if>
+      <if test="fofCompanyName != null">
+      and  fofCompanyName = #{fofCompanyName,jdbcType=VARCHAR}
+      </if>
+      <if test="fofProductId != null">
+      and  fofProductId = #{fofProductId,jdbcType=BIGINT}
+      </if>
+      <if test="fofProductName != null">
+      and  fofProductName = #{fofProductName,jdbcType=VARCHAR}
+      </if>
+      <if test="fofOperatorId != null">
+      and  fofOperatorId = #{fofOperatorId,jdbcType=BIGINT}
+      </if>
+      <if test="fofOperatorName != null">
+       and fofOperatorName = #{fofOperatorName,jdbcType=VARCHAR}
+      </if>
+      <if test="boffinId != null">
+      and   boffinId = #{boffinId,jdbcType=BIGINT}
+      </if>
+
+     
+      <if test="tradeUserId != null">
+       and  tradeUserId = #{tradeUserId,jdbcType=BIGINT}
+      </if>
+ 
+      <if test="tradeOnine != null">
+      and   tradeOnine = #{tradeOnine,jdbcType=INTEGER}
+      </if>
+      <if test="tradeType != null">
+       and tradeType = #{tradeType,jdbcType=INTEGER}
+      </if>
+      <if test="tradeStatus != null">
+      and   tradeStatus = #{tradeStatus,jdbcType=INTEGER}
+      </if>
+      <if test="currentFlowCode != null">
+       and currentFlowCode = #{currentFlowCode,jdbcType=INTEGER}
+      </if>
+     
+     
+      <if test="ransomType != null">
+      and  ransomType = #{ransomType,jdbcType=INTEGER}
+      </if>
+      <if test="trafficNumber != null">
+       and  trafficNumber = #{trafficNumber,jdbcType=VARCHAR}
+      </if>
+    
+   	  </where>
+   	   order by id desc 
+       limit 1 ;
+	</select>
+	  <select id="selectListByCondition" resultType="com.fof.entity.TradeFlow">
+       select 
+    <include refid="Base_Column_List" />
+    from trade_flow
+			<where>
+		        <if test="simuCompanyId != null">
+       and simuCompanyId = #{simuCompanyId,jdbcType=BIGINT}
+      </if>
+      <if test="simuCompanyName != null">
+      and  simuCompanyName = #{simuCompanyName,jdbcType=VARCHAR}
+      </if>
+      <if test="simuProductId != null">
+      and  simuProductId = #{simuProductId,jdbcType=BIGINT}
+      </if>
+      <if test="simuProductName != null">
+      and  simuProductName = #{simuProductName,jdbcType=VARCHAR}
+      </if>
+      <if test="fofCompanyId != null">
+      and  fofCompanyId = #{fofCompanyId,jdbcType=BIGINT}
+      </if>
+      <if test="fofCompanyName != null">
+      and  fofCompanyName = #{fofCompanyName,jdbcType=VARCHAR}
+      </if>
+      <if test="fofProductId != null">
+      and  fofProductId = #{fofProductId,jdbcType=BIGINT}
+      </if>
+      <if test="fofProductName != null">
+      and  fofProductName = #{fofProductName,jdbcType=VARCHAR}
+      </if>
+      <if test="fofOperatorId != null">
+      and  fofOperatorId = #{fofOperatorId,jdbcType=BIGINT}
+      </if>
+      <if test="fofOperatorName != null">
+       and fofOperatorName = #{fofOperatorName,jdbcType=VARCHAR}
+      </if>
+      <if test="boffinId != null">
+      and   boffinId = #{boffinId,jdbcType=BIGINT}
+      </if>
+
+     
+      <if test="tradeUserId != null">
+       and  tradeUserId = #{tradeUserId,jdbcType=BIGINT}
+      </if>
+ 
+      <if test="tradeOnine != null">
+      and   tradeOnine = #{tradeOnine,jdbcType=INTEGER}
+      </if>
+      <if test="tradeType != null">
+       and tradeType = #{tradeType,jdbcType=INTEGER}
+      </if>
+      <if test="tradeStatus != null">
+      and   tradeStatus = #{tradeStatus,jdbcType=INTEGER}
+      </if>
+      <if test="currentFlowCode != null">
+       and currentFlowCode = #{currentFlowCode,jdbcType=INTEGER}
+      </if>
+     
+     
+      <if test="ransomType != null">
+      and  ransomType = #{ransomType,jdbcType=INTEGER}
+      </if>
+      <if test="trafficNumber != null">
+       and  trafficNumber = #{trafficNumber,jdbcType=VARCHAR}
+      </if>
+    
+   	  </where>
+   	   order by id desc ;
+	</select>
+	
+	
+	
+
+</mapper>

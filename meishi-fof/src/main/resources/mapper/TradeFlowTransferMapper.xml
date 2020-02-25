@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fof.dao.TradeFlowTransferMapper">
+
+<sql id="Base_Column_List">
+    id, tradeflowId, createTime, updateTime, operateUserId, operateUserName, transferTradeMoney, 
+    transferTradeMoneyUpper, noticeType, transferTime
+  </sql>
+  
+<select id="selectByPrimaryKey" parameterType="java.lang.Long"  resultType="com.fof.entity.TradeFlowTransfer">
+    select 
+    <include refid="Base_Column_List" />
+    from trade_flow_transfer
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+<insert id="insert"  useGeneratedKeys="true"  keyProperty="id" parameterType="com.fof.entity.TradeFlowTransfer">
+    insert into trade_flow_transfer (tradeflowId, createTime, 
+      updateTime, operateUserId, operateUserName, 
+      transferTradeMoney, transferTradeMoneyUpper, 
+      noticeType, transferTime)
+    values (#{tradeflowId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{operateUserId,jdbcType=BIGINT}, #{operateUserName,jdbcType=VARCHAR}, 
+      #{transferTradeMoney,jdbcType=DECIMAL}, #{transferTradeMoneyUpper,jdbcType=VARCHAR}, 
+      #{noticeType,jdbcType=INTEGER}, #{transferTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true"  keyProperty="id"  parameterType="com.fof.entity.TradeFlowTransfer">
+    insert into trade_flow_transfer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tradeflowId != null">
+        tradeflowId,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+      <if test="operateUserId != null">
+        operateUserId,
+      </if>
+      <if test="operateUserName != null">
+        operateUserName,
+      </if>
+      <if test="transferTradeMoney != null">
+        transferTradeMoney,
+      </if>
+      <if test="transferTradeMoneyUpper != null">
+        transferTradeMoneyUpper,
+      </if>
+      <if test="noticeType != null">
+        noticeType,
+      </if>
+      <if test="transferTime != null">
+        transferTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="tradeflowId != null">
+        #{tradeflowId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateUserId != null">
+        #{operateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operateUserName != null">
+        #{operateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTradeMoney != null">
+        #{transferTradeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="transferTradeMoneyUpper != null">
+        #{transferTradeMoneyUpper,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeType != null">
+        #{noticeType,jdbcType=INTEGER},
+      </if>
+      <if test="transferTime != null">
+        #{transferTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fof.entity.TradeFlowTransfer">
+    update trade_flow_transfer
+    <trim prefix="set" suffixOverrides=",">
+      <if test="tradeflowId != null">
+        tradeflowId = #{tradeflowId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateUserId != null">
+        operateUserId = #{operateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operateUserName != null">
+        operateUserName = #{operateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTradeMoney != null">
+        transferTradeMoney = #{transferTradeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="transferTradeMoneyUpper != null">
+        transferTradeMoneyUpper = #{transferTradeMoneyUpper,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeType != null">
+        noticeType = #{noticeType,jdbcType=INTEGER},
+      </if>
+      <if test="transferTime != null">
+        transferTime = #{transferTime,jdbcType=TIMESTAMP},
+      </if>
+   </trim>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectOneByCondition" resultType="com.fof.entity.TradeFlowTransfer">
+  select 
+    <include refid="Base_Column_List" />
+     from trade_flow_transfer
+			<where>
+		          <if test="tradeflowId != null">
+      and  tradeflowId = #{tradeflowId,jdbcType=BIGINT},
+      </if>
+      <if test="operateUserId != null">
+      and  operateUserId = #{operateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="noticeType != null">
+       and noticeType = #{noticeType,jdbcType=INTEGER},
+      </if>
+   	</where>
+   	   order by id desc 
+       limit 1 ;
+	</select>
+	  <select id="selectListByCondition" resultType="com.fof.entity.TradeFlowTransfer">
+       select 
+    <include refid="Base_Column_List" />
+     from trade_flow_transfer
+			<where>
+		          <if test="tradeflowId != null">
+      and  tradeflowId = #{tradeflowId,jdbcType=BIGINT},
+      </if>
+      <if test="operateUserId != null">
+      and  operateUserId = #{operateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="noticeType != null">
+       and noticeType = #{noticeType,jdbcType=INTEGER},
+      </if>
+   	</where>
+   	   order by id desc ;
+	</select>
+	
+	
+</mapper>

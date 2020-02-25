@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fof.dao.EnterFlowCompanyMapper">
+
+
+<sql id="Base_Column_List">
+    id, tagId, enterFlowId, companyName, companyAddress, foudDate, registrationDate, 
+    legalPerson, regesterMoney, employeeNumber, manageScale, productScale, productNumber, 
+    webSite, awardDescribe, conactName, conactDuty, conactMobile, createTime, updateTime,    companyProfile, companyInvestment, comapnyProcess, companyRisk, tradingSystem
+  </sql>
+ <select id="selectByPrimaryKey" parameterType="java.lang.Long"   resultType="com.fof.entity.EnterFlowCompany">
+    select 
+   <include refid="Base_Column_List" />
+    from enter_flow_company
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+<insert id="insert" useGeneratedKeys="true"  keyProperty="id" parameterType="com.fof.entity.EnterFlowCompany">
+    insert into enter_flow_company (tagId, enterFlowId, 
+      companyName, companyAddress, foudDate, 
+      registrationDate, legalPerson, regesterMoney, 
+      employeeNumber, manageScale, productScale, 
+      productNumber, webSite, awardDescribe, 
+      conactName, conactDuty, conactMobile, 
+      createTime, updateTime, companyProfile, 
+      companyInvestment, comapnyProcess, 
+      companyRisk, tradingSystem)
+    values (#{tagId,jdbcType=BIGINT}, #{enterFlowId,jdbcType=BIGINT}, 
+      #{companyName,jdbcType=VARCHAR}, #{companyAddress,jdbcType=VARCHAR}, #{foudDate,jdbcType=DATE}, 
+      #{registrationDate,jdbcType=DATE}, #{legalPerson,jdbcType=VARCHAR}, #{regesterMoney,jdbcType=INTEGER}, 
+      #{employeeNumber,jdbcType=INTEGER}, #{manageScale,jdbcType=INTEGER}, #{productScale,jdbcType=INTEGER}, 
+      #{productNumber,jdbcType=INTEGER}, #{webSite,jdbcType=VARCHAR}, #{awardDescribe,jdbcType=VARCHAR}, 
+      #{conactName,jdbcType=VARCHAR}, #{conactDuty,jdbcType=VARCHAR}, #{conactMobile,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{companyProfile,jdbcType=LONGVARCHAR}, 
+      #{companyInvestment,jdbcType=LONGVARCHAR}, #{comapnyProcess,jdbcType=LONGVARCHAR}, 
+      #{companyRisk,jdbcType=LONGVARCHAR}, #{tradingSystem,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id"  parameterType="com.fof.entity.EnterFlowCompany">
+    insert into enter_flow_company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tagId != null">
+        tagId,
+      </if>
+      <if test="enterFlowId != null">
+        enterFlowId,
+      </if>
+      <if test="companyName != null">
+        companyName,
+      </if>
+      <if test="companyAddress != null">
+        companyAddress,
+      </if>
+      <if test="foudDate != null">
+        foudDate,
+      </if>
+      <if test="registrationDate != null">
+        registrationDate,
+      </if>
+      <if test="legalPerson != null">
+        legalPerson,
+      </if>
+      <if test="regesterMoney != null">
+        regesterMoney,
+      </if>
+      <if test="employeeNumber != null">
+        employeeNumber,
+      </if>
+      <if test="manageScale != null">
+        manageScale,
+      </if>
+      <if test="productScale != null">
+        productScale,
+      </if>
+      <if test="productNumber != null">
+        productNumber,
+      </if>
+      <if test="webSite != null">
+        webSite,
+      </if>
+      <if test="awardDescribe != null">
+        awardDescribe,
+      </if>
+      <if test="conactName != null">
+        conactName,
+      </if>
+      <if test="conactDuty != null">
+        conactDuty,
+      </if>
+      <if test="conactMobile != null">
+        conactMobile,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+      <if test="companyProfile != null">
+        companyProfile,
+      </if>
+      <if test="companyInvestment != null">
+        companyInvestment,
+      </if>
+      <if test="comapnyProcess != null">
+        comapnyProcess,
+      </if>
+      <if test="companyRisk != null">
+        companyRisk,
+      </if>
+      <if test="tradingSystem != null">
+        tradingSystem,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="tagId != null">
+        #{tagId,jdbcType=BIGINT},
+      </if>
+      <if test="enterFlowId != null">
+        #{enterFlowId,jdbcType=BIGINT},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null">
+        #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="foudDate != null">
+        #{foudDate,jdbcType=DATE},
+      </if>
+      <if test="registrationDate != null">
+        #{registrationDate,jdbcType=DATE},
+      </if>
+      <if test="legalPerson != null">
+        #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="regesterMoney != null">
+        #{regesterMoney,jdbcType=INTEGER},
+      </if>
+      <if test="employeeNumber != null">
+        #{employeeNumber,jdbcType=INTEGER},
+      </if>
+      <if test="manageScale != null">
+        #{manageScale,jdbcType=INTEGER},
+      </if>
+      <if test="productScale != null">
+        #{productScale,jdbcType=INTEGER},
+      </if>
+      <if test="productNumber != null">
+        #{productNumber,jdbcType=INTEGER},
+      </if>
+      <if test="webSite != null">
+        #{webSite,jdbcType=VARCHAR},
+      </if>
+      <if test="awardDescribe != null">
+        #{awardDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="conactName != null">
+        #{conactName,jdbcType=VARCHAR},
+      </if>
+      <if test="conactDuty != null">
+        #{conactDuty,jdbcType=VARCHAR},
+      </if>
+      <if test="conactMobile != null">
+        #{conactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="companyProfile != null">
+        #{companyProfile,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="companyInvestment != null">
+        #{companyInvestment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="comapnyProcess != null">
+        #{comapnyProcess,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="companyRisk != null">
+        #{companyRisk,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="tradingSystem != null">
+        #{tradingSystem,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fof.entity.EnterFlowCompany">
+    update enter_flow_company
+     <trim prefix="set" suffixOverrides=",">
+      <if test="tagId != null">
+        tagId = #{tagId,jdbcType=BIGINT},
+      </if>
+      <if test="enterFlowId != null">
+        enterFlowId = #{enterFlowId,jdbcType=BIGINT},
+      </if>
+      <if test="companyName != null">
+        companyName = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null">
+        companyAddress = #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="foudDate != null">
+        foudDate = #{foudDate,jdbcType=DATE},
+      </if>
+      <if test="registrationDate != null">
+        registrationDate = #{registrationDate,jdbcType=DATE},
+      </if>
+      <if test="legalPerson != null">
+        legalPerson = #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="regesterMoney != null">
+        regesterMoney = #{regesterMoney,jdbcType=INTEGER},
+      </if>
+      <if test="employeeNumber != null">
+        employeeNumber = #{employeeNumber,jdbcType=INTEGER},
+      </if>
+      <if test="manageScale != null">
+        manageScale = #{manageScale,jdbcType=INTEGER},
+      </if>
+      <if test="productScale != null">
+        productScale = #{productScale,jdbcType=INTEGER},
+      </if>
+      <if test="productNumber != null">
+        productNumber = #{productNumber,jdbcType=INTEGER},
+      </if>
+      <if test="webSite != null">
+        webSite = #{webSite,jdbcType=VARCHAR},
+      </if>
+      <if test="awardDescribe != null">
+        awardDescribe = #{awardDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="conactName != null">
+        conactName = #{conactName,jdbcType=VARCHAR},
+      </if>
+      <if test="conactDuty != null">
+        conactDuty = #{conactDuty,jdbcType=VARCHAR},
+      </if>
+      <if test="conactMobile != null">
+        conactMobile = #{conactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="companyProfile != null">
+        companyProfile = #{companyProfile,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="companyInvestment != null">
+        companyInvestment = #{companyInvestment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="comapnyProcess != null">
+        comapnyProcess = #{comapnyProcess,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="companyRisk != null">
+        companyRisk = #{companyRisk,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="tradingSystem != null">
+        tradingSystem = #{tradingSystem,jdbcType=LONGVARCHAR},
+      </if>
+  
+  
+   </trim>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+<select id="selectOneByCondition" resultType="com.fof.entity.EnterFlowCompany">
+    select 
+   <include refid="Base_Column_List" />
+    from enter_flow_companys
+			<where>
+		             <if test="tagId != null">
+      and  tagId = #{tagId,jdbcType=BIGINT}
+      </if>
+      <if test="enterFlowId != null">
+       and  enterFlowId = #{enterFlowId,jdbcType=BIGINT}
+      </if>
+      <if test="companyName != null">
+      and  companyName = #{companyName,jdbcType=VARCHAR}
+      </if>
+      <if test="foudDate != null">
+      and  foudDate = #{foudDate,jdbcType=DATE}
+      </if>
+      <if test="registrationDate != null">
+      and  registrationDate = #{registrationDate,jdbcType=DATE}
+      </if>
+      <if test="legalPerson != null">
+      and  legalPerson = #{legalPerson,jdbcType=VARCHAR}
+      </if>
+      <if test="regesterMoney != null">
+       and   regesterMoney = #{regesterMoney,jdbcType=INTEGER}
+      </if>
+      <if test="employeeNumber != null">
+       and  employeeNumber = #{employeeNumber,jdbcType=INTEGER}
+      </if>
+      <if test="manageScale != null">
+       and  manageScale = #{manageScale,jdbcType=INTEGER}
+      </if>
+      <if test="productScale != null">
+       and   productScale = #{productScale,jdbcType=INTEGER}
+      </if>
+      <if test="productNumber != null">
+      and   productNumber = #{productNumber,jdbcType=INTEGER}
+      </if>
+      <if test="conactName != null">
+       and  conactName = #{conactName,jdbcType=VARCHAR}
+      </if>
+      <if test="conactMobile != null">
+      and  conactMobile = #{conactMobile,jdbcType=VARCHAR}
+      </if>
+   	  </where>
+   	    order by id desc 
+       limit 1 ;
+	</select>
+  <select id="selectListByCondition" resultType="com.fof.entity.EnterFlowCompany">
+    select
+   <include refid="Base_Column_List" />
+    from enter_flow_companys
+		<where>
+		            <if test="tagId != null">
+      and  tagId = #{tagId,jdbcType=BIGINT}
+      </if>
+      <if test="enterFlowId != null">
+       and  enterFlowId = #{enterFlowId,jdbcType=BIGINT}
+      </if>
+      <if test="companyName != null">
+      and  companyName = #{companyName,jdbcType=VARCHAR}
+      </if>
+      <if test="foudDate != null">
+      and  foudDate = #{foudDate,jdbcType=DATE}
+      </if>
+      <if test="registrationDate != null">
+      and  registrationDate = #{registrationDate,jdbcType=DATE}
+      </if>
+      <if test="legalPerson != null">
+      and  legalPerson = #{legalPerson,jdbcType=VARCHAR}
+      </if>
+      <if test="regesterMoney != null">
+       and   regesterMoney = #{regesterMoney,jdbcType=INTEGER}
+      </if>
+      <if test="employeeNumber != null">
+       and  employeeNumber = #{employeeNumber,jdbcType=INTEGER}
+      </if>
+      <if test="manageScale != null">
+       and  manageScale = #{manageScale,jdbcType=INTEGER}
+      </if>
+      <if test="productScale != null">
+       and   productScale = #{productScale,jdbcType=INTEGER}
+      </if>
+      <if test="productNumber != null">
+      and   productNumber = #{productNumber,jdbcType=INTEGER}
+      </if>
+      <if test="conactName != null">
+       and  conactName = #{conactName,jdbcType=VARCHAR}
+      </if>
+      <if test="conactMobile != null">
+      and  conactMobile = #{conactMobile,jdbcType=VARCHAR}
+      </if>
+   	  </where>
+   	   order by id desc;
+	</select>
+	
+	
+
+
+</mapper>

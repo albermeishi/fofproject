@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fof.dao.FofProductMapper">
+
+ <sql id="Base_Column_List">
+    id, userId, userName, fofCompanyId, fofCompanyName, productCode, productName, productType, 
+    organization, fundDate, 
+registerDate, validity, productCatalog, productScale, productManageName, 
+    productCounselor, trustee, outsourcing, accountName, accountNumber, bankName, riskLevel, 
+    createTime, updateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.fof.entity.FofProduct" >
+    select 
+    <include refid="Base_Column_List" />
+    from fof_product
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+<insert id="insert" parameterType="com.fof.entity.FofProduct">
+    insert into fof_product (userId, userName, 
+      fofCompanyId, fofCompanyName, productCode, 
+      productName, productType, organization, 
+      fundDate, 
+registerDate, validity, 
+      productCatalog, productScale, productManageName, 
+      productCounselor, trustee, outsourcing, 
+      accountName, accountNumber, bankName, 
+      riskLevel, createTime, updateTime
+      )
+    values (#{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, 
+      #{fofCompanyId,jdbcType=BIGINT}, #{fofCompanyName,jdbcType=VARCHAR}, #{productCode,jdbcType=VARCHAR}, 
+      #{productName,jdbcType=VARCHAR}, #{productType,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, 
+      #{fundDate,jdbcType=DATE}, #{
+registerDate,jdbcType=DATE}, #{validity,jdbcType=VARCHAR}, 
+      #{productCatalog,jdbcType=VARCHAR}, #{productScale,jdbcType=VARCHAR}, #{productManageName,jdbcType=VARCHAR}, 
+      #{productCounselor,jdbcType=VARCHAR}, #{trustee,jdbcType=VARCHAR}, #{outsourcing,jdbcType=VARCHAR}, 
+      #{accountName,jdbcType=VARCHAR}, #{accountNumber,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, 
+      #{riskLevel,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true"  keyProperty="id"  parameterType="com.fof.entity.FofProduct">
+    insert into fof_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="userName != null">
+        userName,
+      </if>
+      <if test="fofCompanyId != null">
+        fofCompanyId,
+      </if>
+      <if test="fofCompanyName != null">
+        fofCompanyName,
+      </if>
+      <if test="productCode != null">
+        productCode,
+      </if>
+      <if test="productName != null">
+        productName,
+      </if>
+      <if test="productType != null">
+        productType,
+      </if>
+      <if test="organization != null">
+        organization,
+      </if>
+      <if test="fundDate != null">
+        fundDate,
+      </if>
+      <if test=" registerDate != null">
+        
+      registerDate,
+      </if>
+      <if test="validity != null">
+        validity,
+      </if>
+      <if test="productCatalog != null">
+        productCatalog,
+      </if>
+      <if test="productScale != null">
+        productScale,
+      </if>
+      <if test="productManageName != null">
+        productManageName,
+      </if>
+      <if test="productCounselor != null">
+        productCounselor,
+      </if>
+      <if test="trustee != null">
+        trustee,
+      </if>
+      <if test="outsourcing != null">
+        outsourcing,
+      </if>
+      <if test="accountName != null">
+        accountName,
+      </if>
+      <if test="accountNumber != null">
+        accountNumber,
+      </if>
+      <if test="bankName != null">
+        bankName,
+      </if>
+      <if test="riskLevel != null">
+        riskLevel,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="fofCompanyId != null">
+        #{fofCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="fofCompanyName != null">
+        #{fofCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null">
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null">
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null">
+        #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="fundDate != null">
+        #{fundDate,jdbcType=DATE},
+      </if>
+      <if test=" registerDate != null">
+        #{registerDate,jdbcType=DATE},
+      </if>
+      <if test="validity != null">
+        #{validity,jdbcType=VARCHAR},
+      </if>
+      <if test="productCatalog != null">
+        #{productCatalog,jdbcType=VARCHAR},
+      </if>
+      <if test="productScale != null">
+        #{productScale,jdbcType=VARCHAR},
+      </if>
+      <if test="productManageName != null">
+        #{productManageName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCounselor != null">
+        #{productCounselor,jdbcType=VARCHAR},
+      </if>
+      <if test="trustee != null">
+        #{trustee,jdbcType=VARCHAR},
+      </if>
+      <if test="outsourcing != null">
+        #{outsourcing,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null">
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null">
+        #{accountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="riskLevel != null">
+        #{riskLevel,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fof.entity.FofProduct">
+    update fof_product
+    <trim prefix="set" suffixOverrides=",">
+      <if test="userId != null">
+        userId = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="fofCompanyId != null">
+        fofCompanyId = #{fofCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="fofCompanyName != null">
+        fofCompanyName = #{fofCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null">
+        productCode = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        productName = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null">
+        productType = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null">
+        organization = #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="fundDate != null">
+        fundDate = #{fundDate,jdbcType=DATE},
+      </if>
+      <if test=" registerDate != null">
+        
+      registerDate = #{registerDate,jdbcType=DATE},
+      </if>
+      <if test="validity != null">
+        validity = #{validity,jdbcType=VARCHAR},
+      </if>
+      <if test="productCatalog != null">
+        productCatalog = #{productCatalog,jdbcType=VARCHAR},
+      </if>
+      <if test="productScale != null">
+        productScale = #{productScale,jdbcType=VARCHAR},
+      </if>
+      <if test="productManageName != null">
+        productManageName = #{productManageName,jdbcType=VARCHAR},
+      </if>
+      <if test="productCounselor != null">
+        productCounselor = #{productCounselor,jdbcType=VARCHAR},
+      </if>
+      <if test="trustee != null">
+        trustee = #{trustee,jdbcType=VARCHAR},
+      </if>
+      <if test="outsourcing != null">
+        outsourcing = #{outsourcing,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null">
+        accountName = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null">
+        accountNumber = #{accountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        bankName = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="riskLevel != null">
+        riskLevel = #{riskLevel,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+   </trim>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+   <select id="selectOneByCondition" resultType="com.fof.entity.FofProduct">
+      select 
+    <include refid="Base_Column_List" />
+    from fof_product
+			<where>
+		        <if test="userId != null">
+       and userId = #{userId,jdbcType=BIGINT}
+      </if>
+      <if test="fofCompanyId != null">
+      and  fofCompanyId = #{fofCompanyId,jdbcType=BIGINT}
+      </if>
+      <if test="fofCompanyName != null">
+      and  fofCompanyName = #{fofCompanyName,jdbcType=VARCHAR}
+      </if>
+      <if test="productCode != null">
+      and  productCode = #{productCode,jdbcType=VARCHAR}
+      </if>
+      <if test="productName != null">
+      and  productName = #{productName,jdbcType=VARCHAR}
+      </if>
+      <if test="productType != null">
+      and  productType = #{productType,jdbcType=VARCHAR}
+      </if>
+      <if test="riskLevel != null">
+      and  riskLevel = #{riskLevel,jdbcType=INTEGER}
+      </if>
+     </where>
+   	   order by id desc 
+       limit 1 ;
+	</select>
+	   <select id="selectListByCondition" resultType="com.fof.entity.FofProduct">
+      select 
+    <include refid="Base_Column_List" />
+    from fof_product
+		<where>
+		        <if test="userId != null">
+       and userId = #{userId,jdbcType=BIGINT}
+      </if>
+      <if test="fofCompanyId != null">
+      and  fofCompanyId = #{fofCompanyId,jdbcType=BIGINT}
+      </if>
+      <if test="fofCompanyName != null">
+      and  fofCompanyName = #{fofCompanyName,jdbcType=VARCHAR}
+      </if>
+      <if test="productCode != null">
+      and  productCode = #{productCode,jdbcType=VARCHAR}
+      </if>
+      <if test="productName != null">
+      and  productName = #{productName,jdbcType=VARCHAR}
+      </if>
+      <if test="productType != null">
+      and  productType = #{productType,jdbcType=VARCHAR}
+      </if>
+      <if test="riskLevel != null">
+      and  riskLevel = #{riskLevel,jdbcType=INTEGER}
+      </if>
+    
+     	</where>
+   	   order by id desc ;
+	</select>
+	
+	
+</mapper>

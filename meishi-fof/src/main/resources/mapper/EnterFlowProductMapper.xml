@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fof.dao.EnterFlowProductMapper">
+
+<sql id="Base_Column_List">
+    id, tagId, enterFlowId, productName, stopStatus, foundDate, prouctEndDate, strategy, 
+    rate, trusteeAgency, valuationAgency, capitalProperty, periodMaximum, periodMinmum, 
+    performanceDataStatus, perfomanceDataStartDate, perfomanceDataStartEndDate, riskFree, 
+    newShareStatus, shareFofStatus, shareDataStatus, shareStartDate, shareEndDate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.fof.entity.EnterFlowProduct" >
+    select 
+    <include refid="Base_Column_List" />
+    from enter_flow_product
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+   <insert id="insert" useGeneratedKeys="true"  keyProperty="id"  parameterType="com.fof.entity.EnterFlowProduct">
+    insert into enter_flow_product (tagId, enterFlowId, 
+      productName, stopStatus, foundDate, 
+      prouctEndDate, strategy, rate, 
+      trusteeAgency, valuationAgency, capitalProperty, 
+      periodMaximum, periodMinmum, performanceDataStatus, 
+      perfomanceDataStartDate, perfomanceDataStartEndDate, 
+      riskFree, newShareStatus, shareFofStatus, 
+      shareDataStatus, shareStartDate, shareEndDate
+      )
+    values (#{tagId,jdbcType=BIGINT}, #{enterFlowId,jdbcType=BIGINT}, 
+      #{productName,jdbcType=VARCHAR}, #{stopStatus,jdbcType=INTEGER}, #{foundDate,jdbcType=DATE}, 
+      #{prouctEndDate,jdbcType=DATE}, #{strategy,jdbcType=VARCHAR}, #{rate,jdbcType=VARCHAR}, 
+      #{trusteeAgency,jdbcType=VARCHAR}, #{valuationAgency,jdbcType=VARCHAR}, #{capitalProperty,jdbcType=VARCHAR}, 
+      #{periodMaximum,jdbcType=VARCHAR}, #{periodMinmum,jdbcType=VARCHAR}, #{performanceDataStatus,jdbcType=INTEGER}, 
+      #{perfomanceDataStartDate,jdbcType=DATE}, #{perfomanceDataStartEndDate,jdbcType=DATE}, 
+      #{riskFree,jdbcType=VARCHAR}, #{newShareStatus,jdbcType=INTEGER}, #{shareFofStatus,jdbcType=INTEGER}, 
+      #{shareDataStatus,jdbcType=INTEGER}, #{shareStartDate,jdbcType=DATE}, #{shareEndDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true"   keyProperty="id"  parameterType="com.fof.entity.EnterFlowProduct">
+    insert into enter_flow_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tagId != null">
+        tagId,
+      </if>
+      <if test="enterFlowId != null">
+        enterFlowId,
+      </if>
+      <if test="productName != null">
+        productName,
+      </if>
+      <if test="stopStatus != null">
+        stopStatus,
+      </if>
+      <if test="foundDate != null">
+        foundDate,
+      </if>
+      <if test="prouctEndDate != null">
+        prouctEndDate,
+      </if>
+      <if test="strategy != null">
+        strategy,
+      </if>
+      <if test="rate != null">
+        rate,
+      </if>
+      <if test="trusteeAgency != null">
+        trusteeAgency,
+      </if>
+      <if test="valuationAgency != null">
+        valuationAgency,
+      </if>
+      <if test="capitalProperty != null">
+        capitalProperty,
+      </if>
+      <if test="periodMaximum != null">
+        periodMaximum,
+      </if>
+      <if test="periodMinmum != null">
+        periodMinmum,
+      </if>
+      <if test="performanceDataStatus != null">
+        performanceDataStatus,
+      </if>
+      <if test="perfomanceDataStartDate != null">
+        perfomanceDataStartDate,
+      </if>
+      <if test="perfomanceDataStartEndDate != null">
+        perfomanceDataStartEndDate,
+      </if>
+      <if test="riskFree != null">
+        riskFree,
+      </if>
+      <if test="newShareStatus != null">
+        newShareStatus,
+      </if>
+      <if test="shareFofStatus != null">
+        shareFofStatus,
+      </if>
+      <if test="shareDataStatus != null">
+        shareDataStatus,
+      </if>
+      <if test="shareStartDate != null">
+        shareStartDate,
+      </if>
+      <if test="shareEndDate != null">
+        shareEndDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="tagId != null">
+        #{tagId,jdbcType=BIGINT},
+      </if>
+      <if test="enterFlowId != null">
+        #{enterFlowId,jdbcType=BIGINT},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="stopStatus != null">
+        #{stopStatus,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null">
+        #{foundDate,jdbcType=DATE},
+      </if>
+      <if test="prouctEndDate != null">
+        #{prouctEndDate,jdbcType=DATE},
+      </if>
+      <if test="strategy != null">
+        #{strategy,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="trusteeAgency != null">
+        #{trusteeAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="valuationAgency != null">
+        #{valuationAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalProperty != null">
+        #{capitalProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="periodMaximum != null">
+        #{periodMaximum,jdbcType=VARCHAR},
+      </if>
+      <if test="periodMinmum != null">
+        #{periodMinmum,jdbcType=VARCHAR},
+      </if>
+      <if test="performanceDataStatus != null">
+        #{performanceDataStatus,jdbcType=INTEGER},
+      </if>
+      <if test="perfomanceDataStartDate != null">
+        #{perfomanceDataStartDate,jdbcType=DATE},
+      </if>
+      <if test="perfomanceDataStartEndDate != null">
+        #{perfomanceDataStartEndDate,jdbcType=DATE},
+      </if>
+      <if test="riskFree != null">
+        #{riskFree,jdbcType=VARCHAR},
+      </if>
+      <if test="newShareStatus != null">
+        #{newShareStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shareFofStatus != null">
+        #{shareFofStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shareDataStatus != null">
+        #{shareDataStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shareStartDate != null">
+        #{shareStartDate,jdbcType=DATE},
+      </if>
+      <if test="shareEndDate != null">
+        #{shareEndDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fof.entity.EnterFlowProduct">
+    update enter_flow_product
+    <trim prefix="set" suffixOverrides=",">
+      <if test="tagId != null">
+        tagId = #{tagId,jdbcType=BIGINT},
+      </if>
+      <if test="enterFlowId != null">
+        enterFlowId = #{enterFlowId,jdbcType=BIGINT},
+      </if>
+      <if test="productName != null">
+        productName = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="stopStatus != null">
+        stopStatus = #{stopStatus,jdbcType=INTEGER},
+      </if>
+      <if test="foundDate != null">
+        foundDate = #{foundDate,jdbcType=DATE},
+      </if>
+      <if test="prouctEndDate != null">
+        prouctEndDate = #{prouctEndDate,jdbcType=DATE},
+      </if>
+      <if test="strategy != null">
+        strategy = #{strategy,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="trusteeAgency != null">
+        trusteeAgency = #{trusteeAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="valuationAgency != null">
+        valuationAgency = #{valuationAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalProperty != null">
+        capitalProperty = #{capitalProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="periodMaximum != null">
+        periodMaximum = #{periodMaximum,jdbcType=VARCHAR},
+      </if>
+      <if test="periodMinmum != null">
+        periodMinmum = #{periodMinmum,jdbcType=VARCHAR},
+      </if>
+      <if test="performanceDataStatus != null">
+        performanceDataStatus = #{performanceDataStatus,jdbcType=INTEGER},
+      </if>
+      <if test="perfomanceDataStartDate != null">
+        perfomanceDataStartDate = #{perfomanceDataStartDate,jdbcType=DATE},
+      </if>
+      <if test="perfomanceDataStartEndDate != null">
+        perfomanceDataStartEndDate = #{perfomanceDataStartEndDate,jdbcType=DATE},
+      </if>
+      <if test="riskFree != null">
+        riskFree = #{riskFree,jdbcType=VARCHAR},
+      </if>
+      <if test="newShareStatus != null">
+        newShareStatus = #{newShareStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shareFofStatus != null">
+        shareFofStatus = #{shareFofStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shareDataStatus != null">
+        shareDataStatus = #{shareDataStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shareStartDate != null">
+        shareStartDate = #{shareStartDate,jdbcType=DATE},
+      </if>
+      <if test="shareEndDate != null">
+        shareEndDate = #{shareEndDate,jdbcType=DATE},
+      </if>
+  
+  	</trim>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+ 
+    <select id="selectOneByCondition" resultType="com.fof.entity.EnterFlowProduct">
+       select 
+    <include refid="Base_Column_List" />
+    from enter_flow_product
+			<where>
+		           <if test="tagId != null">
+      and  tagId = #{tagId,jdbcType=BIGINT}
+      </if>
+      <if test="enterFlowId != null">
+     and   enterFlowId = #{enterFlowId,jdbcType=BIGINT}
+      </if>
+      <if test="productName != null">
+      and  productName = #{productName,jdbcType=VARCHAR}
+      </if>
+      <if test="stopStatus != null">
+       and   stopStatus = #{stopStatus,jdbcType=INTEGER}
+      </if>
+      <if test="strategy != null">
+      and  strategy = #{strategy,jdbcType=VARCHAR}
+      </if>
+
+      <if test="trusteeAgency != null">
+       and  trusteeAgency = #{trusteeAgency,jdbcType=VARCHAR}
+      </if>
+      <if test="valuationAgency != null">
+       and  valuationAgency = #{valuationAgency,jdbcType=VARCHAR}
+      </if>
+      <if test="capitalProperty != null">
+      and   capitalProperty = #{capitalProperty,jdbcType=VARCHAR}
+      </if>
+      <if test="periodMaximum != null">
+      and  periodMaximum = #{periodMaximum,jdbcType=VARCHAR}
+      </if>
+      <if test="periodMinmum != null">
+       and  periodMinmum = #{periodMinmum,jdbcType=VARCHAR}
+      </if>
+      <if test="performanceDataStatus != null">
+      and  performanceDataStatus = #{performanceDataStatus,jdbcType=INTEGER}
+      </if>
+      <if test="perfomanceDataStartDate != null">
+      and  perfomanceDataStartDate = #{perfomanceDataStartDate,jdbcType=DATE}
+      </if>
+      <if test="perfomanceDataStartEndDate != null">
+      and  perfomanceDataStartEndDate = #{perfomanceDataStartEndDate,jdbcType=DATE}
+      </if>
+      <if test="riskFree != null">
+      and  riskFree = #{riskFree,jdbcType=VARCHAR}
+      </if>
+      <if test="newShareStatus != null">
+      and  newShareStatus = #{newShareStatus,jdbcType=INTEGER}
+      </if>
+      <if test="shareFofStatus != null">
+      and  shareFofStatus = #{shareFofStatus,jdbcType=INTEGER}
+      </if>
+      <if test="shareDataStatus != null">
+      and  shareDataStatus = #{shareDataStatus,jdbcType=INTEGER}
+      </if>
+      <if test="shareStartDate != null">
+      and  shareStartDate = #{shareStartDate,jdbcType=DATE}
+      </if>
+      <if test="shareEndDate != null">
+      and  shareEndDate = #{shareEndDate,jdbcType=DATE}
+      </if>
+   	  </where>
+   	    order by id desc 
+        limit 1 ;
+	</select>
+	
+	    <select id="selectListByCondition" resultType="com.fof.entity.EnterFlowProduct">
+       select 
+    <include refid="Base_Column_List" />
+    from enter_flow_product
+			<where>
+		         	           <if test="tagId != null">
+      and  tagId = #{tagId,jdbcType=BIGINT}
+      </if>
+      <if test="enterFlowId != null">
+     and   enterFlowId = #{enterFlowId,jdbcType=BIGINT}
+      </if>
+      <if test="productName != null">
+      and  productName = #{productName,jdbcType=VARCHAR}
+      </if>
+      <if test="stopStatus != null">
+       and   stopStatus = #{stopStatus,jdbcType=INTEGER}
+      </if>
+      <if test="strategy != null">
+      and  strategy = #{strategy,jdbcType=VARCHAR}
+      </if>
+
+      <if test="trusteeAgency != null">
+       and  trusteeAgency = #{trusteeAgency,jdbcType=VARCHAR}
+      </if>
+      <if test="valuationAgency != null">
+       and  valuationAgency = #{valuationAgency,jdbcType=VARCHAR}
+      </if>
+      <if test="capitalProperty != null">
+      and   capitalProperty = #{capitalProperty,jdbcType=VARCHAR}
+      </if>
+      <if test="periodMaximum != null">
+      and  periodMaximum = #{periodMaximum,jdbcType=VARCHAR}
+      </if>
+      <if test="periodMinmum != null">
+       and  periodMinmum = #{periodMinmum,jdbcType=VARCHAR}
+      </if>
+      <if test="performanceDataStatus != null">
+      and  performanceDataStatus = #{performanceDataStatus,jdbcType=INTEGER}
+      </if>
+      <if test="perfomanceDataStartDate != null">
+      and  perfomanceDataStartDate = #{perfomanceDataStartDate,jdbcType=DATE}
+      </if>
+      <if test="perfomanceDataStartEndDate != null">
+      and  perfomanceDataStartEndDate = #{perfomanceDataStartEndDate,jdbcType=DATE}
+      </if>
+      <if test="riskFree != null">
+      and  riskFree = #{riskFree,jdbcType=VARCHAR}
+      </if>
+      <if test="newShareStatus != null">
+      and  newShareStatus = #{newShareStatus,jdbcType=INTEGER}
+      </if>
+      <if test="shareFofStatus != null">
+      and  shareFofStatus = #{shareFofStatus,jdbcType=INTEGER}
+      </if>
+      <if test="shareDataStatus != null">
+      and  shareDataStatus = #{shareDataStatus,jdbcType=INTEGER}
+      </if>
+      <if test="shareStartDate != null">
+      and  shareStartDate = #{shareStartDate,jdbcType=DATE}
+      </if>
+      <if test="shareEndDate != null">
+      and  shareEndDate = #{shareEndDate,jdbcType=DATE}
+      </if>
+   	  </where>
+   	    order by id desc ;
+	</select>
+
+</mapper>

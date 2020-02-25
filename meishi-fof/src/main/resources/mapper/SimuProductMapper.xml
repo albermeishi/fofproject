@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fof.dao.SimuProductMapper">
+ 
+<sql id="Base_Column_List">
+    id, userId, simuCompanyName, simuCompanyId, userName, foreignSourceId, sourceId, 
+    tagId, productPCodeStatus, productCode, productName, boffinId, strategyType, productType, 
+    trustee, organization, organizationCode, operationWay, " frequency", productStartDate, 
+    productendDate, " poolStatus", enterStatus, enterTypeStatus, cooperationStatus, enterTime, 
+    createTime, updateTime
+  </sql>
+  
+<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.fof.entity.SimuProduct" >
+    select 
+    <include refid="Base_Column_List" />
+    from simu_product
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+<insert id="insert" useGeneratedKeys="true"  keyProperty="id"  parameterType="com.fof.entity.SimuProduct">
+    insert into simu_product (userId, simuCompanyName, 
+      simuCompanyId, userName, foreignSourceId, 
+      sourceId, tagId, productPCodeStatus, 
+      productCode, productName, boffinId, 
+      strategyType, productType, trustee, 
+      organization, organizationCode, operationWay, 
+      "frequency", productStartDate, productendDate, 
+      "poolStatus", enterStatus, enterTypeStatus, 
+      cooperationStatus, enterTime, createTime, 
+      updateTime)
+    values (#{userId,jdbcType=BIGINT}, #{simuCompanyName,jdbcType=VARCHAR}, 
+      #{simuCompanyId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{foreignSourceId,jdbcType=BIGINT}, 
+      #{sourceId,jdbcType=BIGINT}, #{tagId,jdbcType=BIGINT}, #{productPCodeStatus,jdbcType=INTEGER}, 
+      #{productCode,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{boffinId,jdbcType=INTEGER}, 
+      #{strategyType,jdbcType=INTEGER}, #{productType,jdbcType=INTEGER}, #{trustee,jdbcType=VARCHAR}, 
+      #{organization,jdbcType=VARCHAR}, #{organizationCode,jdbcType=VARCHAR}, #{operationWay,jdbcType=VARCHAR}, 
+      #{ frequency,jdbcType=VARCHAR}, #{productStartDate,jdbcType=VARCHAR}, #{productendDate,jdbcType=VARCHAR}, 
+      #{ poolStatus,jdbcType=INTEGER}, #{enterStatus,jdbcType=INTEGER}, #{enterTypeStatus,jdbcType=INTEGER}, 
+      #{cooperationStatus,jdbcType=INTEGER}, #{enterTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true"  keyProperty="id"  parameterType="com.fof.entity.SimuProduct">
+    insert into simu_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="simuCompanyName != null">
+        simuCompanyName,
+      </if>
+      <if test="simuCompanyId != null">
+        simuCompanyId,
+      </if>
+      <if test="userName != null">
+        userName,
+      </if>
+      <if test="foreignSourceId != null">
+        foreignSourceId,
+      </if>
+      <if test="sourceId != null">
+        sourceId,
+      </if>
+      <if test="tagId != null">
+        tagId,
+      </if>
+      <if test="productPCodeStatus != null">
+        productPCodeStatus,
+      </if>
+      <if test="productCode != null">
+        productCode,
+      </if>
+      <if test="productName != null">
+        productName,
+      </if>
+      <if test="boffinId != null">
+        boffinId,
+      </if>
+      <if test="strategyType != null">
+        strategyType,
+      </if>
+      <if test="productType != null">
+        productType,
+      </if>
+      <if test="trustee != null">
+        trustee,
+      </if>
+      <if test="organization != null">
+        organization,
+      </if>
+      <if test="organizationCode != null">
+        organizationCode,
+      </if>
+      <if test="operationWay != null">
+        operationWay,
+      </if>
+      <if test=" frequency != null">
+        " frequency",
+      </if>
+      <if test="productStartDate != null">
+        productStartDate,
+      </if>
+      <if test="productendDate != null">
+        productendDate,
+      </if>
+      <if test=" poolStatus != null">
+        " poolStatus",
+      </if>
+      <if test="enterStatus != null">
+        enterStatus,
+      </if>
+      <if test="enterTypeStatus != null">
+        enterTypeStatus,
+      </if>
+      <if test="cooperationStatus != null">
+        cooperationStatus,
+      </if>
+      <if test="enterTime != null">
+        enterTime,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="simuCompanyName != null">
+        #{simuCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="simuCompanyId != null">
+        #{simuCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="foreignSourceId != null">
+        #{foreignSourceId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceId != null">
+        #{sourceId,jdbcType=BIGINT},
+      </if>
+      <if test="tagId != null">
+        #{tagId,jdbcType=BIGINT},
+      </if>
+      <if test="productPCodeStatus != null">
+        #{productPCodeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="productCode != null">
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="boffinId != null">
+        #{boffinId,jdbcType=INTEGER},
+      </if>
+      <if test="strategyType != null">
+        #{strategyType,jdbcType=INTEGER},
+      </if>
+      <if test="productType != null">
+        #{productType,jdbcType=INTEGER},
+      </if>
+      <if test="trustee != null">
+        #{trustee,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null">
+        #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null">
+        #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operationWay != null">
+        #{operationWay,jdbcType=VARCHAR},
+      </if>
+      <if test=" frequency != null">
+        #{ frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="productStartDate != null">
+        #{productStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="productendDate != null">
+        #{productendDate,jdbcType=VARCHAR},
+      </if>
+      <if test=" poolStatus != null">
+        #{ poolStatus,jdbcType=INTEGER},
+      </if>
+      <if test="enterStatus != null">
+        #{enterStatus,jdbcType=INTEGER},
+      </if>
+      <if test="enterTypeStatus != null">
+        #{enterTypeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="cooperationStatus != null">
+        #{cooperationStatus,jdbcType=INTEGER},
+      </if>
+      <if test="enterTime != null">
+        #{enterTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fof.entity.SimuProduct">
+    update simu_product
+    <trim prefix="set" suffixOverrides=",">
+      <if test="userId != null">
+        userId = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="simuCompanyName != null">
+        simuCompanyName = #{simuCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="simuCompanyId != null">
+        simuCompanyId = #{simuCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="foreignSourceId != null">
+        foreignSourceId = #{foreignSourceId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceId != null">
+        sourceId = #{sourceId,jdbcType=BIGINT},
+      </if>
+      <if test="tagId != null">
+        tagId = #{tagId,jdbcType=BIGINT},
+      </if>
+      <if test="productPCodeStatus != null">
+        productPCodeStatus = #{productPCodeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="productCode != null">
+        productCode = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        productName = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="boffinId != null">
+        boffinId = #{boffinId,jdbcType=INTEGER},
+      </if>
+      <if test="strategyType != null">
+        strategyType = #{strategyType,jdbcType=INTEGER},
+      </if>
+      <if test="productType != null">
+        productType = #{productType,jdbcType=INTEGER},
+      </if>
+      <if test="trustee != null">
+        trustee = #{trustee,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null">
+        organization = #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null">
+        organizationCode = #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operationWay != null">
+        operationWay = #{operationWay,jdbcType=VARCHAR},
+      </if>
+      <if test=" frequency != null">
+        " frequency" = #{ frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="productStartDate != null">
+        productStartDate = #{productStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="productendDate != null">
+        productendDate = #{productendDate,jdbcType=VARCHAR},
+      </if>
+      <if test=" poolStatus != null">
+        " poolStatus" = #{ poolStatus,jdbcType=INTEGER},
+      </if>
+      <if test="enterStatus != null">
+        enterStatus = #{enterStatus,jdbcType=INTEGER},
+      </if>
+      <if test="enterTypeStatus != null">
+        enterTypeStatus = #{enterTypeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="cooperationStatus != null">
+        cooperationStatus = #{cooperationStatus,jdbcType=INTEGER},
+      </if>
+      <if test="enterTime != null">
+        enterTime = #{enterTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    
+   </trim>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+ 
+   <select id="selectOneByCondition" resultType="com.fof.entity.SimuProduct">
+       select 
+      <include refid="Base_Column_List" />
+    from simu_product
+			<where>
+		            <if test="userId != null">
+       and userId = #{userId,jdbcType=BIGINT}
+      </if>
+      <if test="simuCompanyName != null">
+      and  simuCompanyName = #{simuCompanyName,jdbcType=VARCHAR}
+      </if>
+      <if test="simuCompanyId != null">
+      and  simuCompanyId = #{simuCompanyId,jdbcType=BIGINT}
+      </if>
+      <if test="foreignSourceId != null">
+       and foreignSourceId = #{foreignSourceId,jdbcType=BIGINT}
+      </if>
+      <if test="sourceId != null">
+       and  sourceId = #{sourceId,jdbcType=BIGINT}
+      </if>
+      <if test="tagId != null">
+       and  tagId = #{tagId,jdbcType=BIGINT}
+      </if>
+      <if test="productPCodeStatus != null">
+      and   productPCodeStatus = #{productPCodeStatus,jdbcType=INTEGER}
+      </if>
+      <if test="productCode != null">
+      and   productCode = #{productCode,jdbcType=VARCHAR}
+      </if>
+      <if test="productName != null">
+      and  productName = #{productName,jdbcType=VARCHAR}
+      </if>
+      <if test="boffinId != null">
+      and  boffinId = #{boffinId,jdbcType=INTEGER}
+      </if>
+      <if test="strategyType != null">
+      and  strategyType = #{strategyType,jdbcType=INTEGER}
+      </if>
+      <if test="productType != null">
+      and  productType = #{productType,jdbcType=INTEGER}
+      </if>
+      <if test=" poolStatus != null">
+      and  "poolStatus" = #{poolStatus,jdbcType=INTEGER}
+      </if>
+      <if test="enterStatus != null">
+      and  enterStatus = #{enterStatus,jdbcType=INTEGER}
+      </if>
+      <if test="enterTypeStatus != null">
+      and  enterTypeStatus = #{enterTypeStatus,jdbcType=INTEGER}
+      </if>
+      <if test="cooperationStatus != null">
+      and  cooperationStatus = #{cooperationStatus,jdbcType=INTEGER}
+      </if>
+   	  </where>
+   	   order by id desc 
+       limit 1 ;
+	</select>
+	
+	  <select id="selectListByCondition" resultType="com.fof.entity.SimuProduct">
+       select 
+      <include refid="Base_Column_List" />
+    from simu_product
+			<where>
+		            <if test="userId != null">
+       and userId = #{userId,jdbcType=BIGINT}
+      </if>
+      <if test="simuCompanyName != null">
+      and  simuCompanyName = #{simuCompanyName,jdbcType=VARCHAR}
+      </if>
+      <if test="simuCompanyId != null">
+      and  simuCompanyId = #{simuCompanyId,jdbcType=BIGINT}
+      </if>
+      <if test="foreignSourceId != null">
+       and foreignSourceId = #{foreignSourceId,jdbcType=BIGINT}
+      </if>
+      <if test="sourceId != null">
+       and  sourceId = #{sourceId,jdbcType=BIGINT}
+      </if>
+      <if test="tagId != null">
+       and  tagId = #{tagId,jdbcType=BIGINT}
+      </if>
+      <if test="productPCodeStatus != null">
+      and   productPCodeStatus = #{productPCodeStatus,jdbcType=INTEGER}
+      </if>
+      <if test="productCode != null">
+      and   productCode = #{productCode,jdbcType=VARCHAR}
+      </if>
+      <if test="productName != null">
+      and  productName = #{productName,jdbcType=VARCHAR}
+      </if>
+      <if test="boffinId != null">
+      and  boffinId = #{boffinId,jdbcType=INTEGER}
+      </if>
+      <if test="strategyType != null">
+      and  strategyType = #{strategyType,jdbcType=INTEGER}
+      </if>
+      <if test="productType != null">
+      and  productType = #{productType,jdbcType=INTEGER}
+      </if>
+      <if test=" poolStatus != null">
+      and  "poolStatus" = #{poolStatus,jdbcType=INTEGER}
+      </if>
+      <if test="enterStatus != null">
+      and  enterStatus = #{enterStatus,jdbcType=INTEGER}
+      </if>
+      <if test="enterTypeStatus != null">
+      and  enterTypeStatus = #{enterTypeStatus,jdbcType=INTEGER}
+      </if>
+      <if test="cooperationStatus != null">
+      and  cooperationStatus = #{cooperationStatus,jdbcType=INTEGER}
+      </if>
+   	 </where>
+   	  order by id desc ;
+	</select>
+</mapper>

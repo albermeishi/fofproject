@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fof.dao.FofCompanySignMapper">
+ 
+ <sql id="Base_Column_List">
+    id, userId, userName, fofCompanyId, companyName, socialCode, lawName, imprintType, 
+    imprintName, lawCard, lawMobile, createTime, updateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.fof.entity.FofCompanySign"  >
+    select 
+    <include refid="Base_Column_List" />
+    from fof_company_sign
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" useGeneratedKeys="true"  keyProperty="id"  parameterType="com.fof.entity.FofCompanySign">
+    insert into fof_company_sign (userId, userName, 
+      fofCompanyId, companyName, socialCode, 
+      lawName, imprintType, imprintName, 
+      lawCard, lawMobile, createTime, 
+      updateTime)
+    values (#{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, 
+      #{fofCompanyId,jdbcType=BIGINT}, #{companyName,jdbcType=VARCHAR}, #{socialCode,jdbcType=VARCHAR}, 
+      #{lawName,jdbcType=VARCHAR}, #{imprintType,jdbcType=INTEGER}, #{imprintName,jdbcType=VARCHAR}, 
+      #{lawCard,jdbcType=VARCHAR}, #{lawMobile,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fof.entity.FofCompanySign">
+    insert into fof_company_sign
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="userName != null">
+        userName,
+      </if>
+      <if test="fofCompanyId != null">
+        fofCompanyId,
+      </if>
+      <if test="companyName != null">
+        companyName,
+      </if>
+      <if test="socialCode != null">
+        socialCode,
+      </if>
+      <if test="lawName != null">
+        lawName,
+      </if>
+      <if test="imprintType != null">
+        imprintType,
+      </if>
+      <if test="imprintName != null">
+        imprintName,
+      </if>
+      <if test="lawCard != null">
+        lawCard,
+      </if>
+      <if test="lawMobile != null">
+        lawMobile,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="fofCompanyId != null">
+        #{fofCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="socialCode != null">
+        #{socialCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lawName != null">
+        #{lawName,jdbcType=VARCHAR},
+      </if>
+      <if test="imprintType != null">
+        #{imprintType,jdbcType=INTEGER},
+      </if>
+      <if test="imprintName != null">
+        #{imprintName,jdbcType=VARCHAR},
+      </if>
+      <if test="lawCard != null">
+        #{lawCard,jdbcType=VARCHAR},
+      </if>
+      <if test="lawMobile != null">
+        #{lawMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fof.entity.FofCompanySign">
+    update fof_company_sign
+     <trim prefix="set" suffixOverrides=",">
+      <if test="userId != null">
+        userId = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="fofCompanyId != null">
+        fofCompanyId = #{fofCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="companyName != null">
+        companyName = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="socialCode != null">
+        socialCode = #{socialCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lawName != null">
+        lawName = #{lawName,jdbcType=VARCHAR},
+      </if>
+      <if test="imprintType != null">
+        imprintType = #{imprintType,jdbcType=INTEGER},
+      </if>
+      <if test="imprintName != null">
+        imprintName = #{imprintName,jdbcType=VARCHAR},
+      </if>
+      <if test="lawCard != null">
+        lawCard = #{lawCard,jdbcType=VARCHAR},
+      </if>
+      <if test="lawMobile != null">
+        lawMobile = #{lawMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+   
+    </trim>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectOneByCondition" resultType="com.fof.entity.FofCompanySign">
+    select 
+    <include refid="Base_Column_List" />
+    from fof_company_sign 
+			<where>
+		         <if test="userId != null">
+      and  userId = #{userId,jdbcType=BIGINT}
+      </if>
+
+      <if test="fofCompanyId != null">
+      and  fofCompanyId = #{fofCompanyId,jdbcType=BIGINT}
+      </if>
+      <if test="companyName != null">
+      and  companyName = #{companyName,jdbcType=VARCHAR}
+      </if>
+      <if test="socialCode != null">
+      and  socialCode = #{socialCode,jdbcType=VARCHAR}
+      </if>
+      <if test="imprintType != null">
+      and  imprintType = #{imprintType,jdbcType=INTEGER}
+      </if>
+   </where>
+   	   order by id desc 
+       limit 1 ;
+	</select>
+	
+<select id="selectListByCondition" resultType="com.fof.entity.FofCompanySign">
+    select 
+    <include refid="Base_Column_List" />
+    from fof_company_sign 
+			<where>
+		        	         <if test="userId != null">
+      and  userId = #{userId,jdbcType=BIGINT}
+      </if>
+
+      <if test="fofCompanyId != null">
+      and  fofCompanyId = #{fofCompanyId,jdbcType=BIGINT}
+      </if>
+      <if test="companyName != null">
+      and  companyName = #{companyName,jdbcType=VARCHAR}
+      </if>
+      <if test="socialCode != null">
+      and  socialCode = #{socialCode,jdbcType=VARCHAR}
+      </if>
+      <if test="imprintType != null">
+      and  imprintType = #{imprintType,jdbcType=INTEGER}
+      </if>
+   
+   </where>
+   	   order by id desc ;
+	</select>
+	
+	
+</mapper>

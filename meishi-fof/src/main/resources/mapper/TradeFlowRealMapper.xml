@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fof.dao.TradeFlowRealMapper">
+
+<sql id="Base_Column_List">
+    id, createTime, updateTime, operateUserId, operateName, realTradeMoney, realTradeNetValue, 
+    realTradeShare, colorType, showWebStatus, showNetValueStatus, remark, realDate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.fof.entity.TradeFlowReal" >
+    select 
+    <include refid="Base_Column_List" />
+    from trade_flow_real
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+ <insert id="insert" useGeneratedKeys="true"  keyProperty="id"  parameterType="com.fof.entity.TradeFlowReal">
+    insert into trade_flow_real (createTime, updateTime, 
+      operateUserId, operateName, realTradeMoney, 
+      realTradeNetValue, realTradeShare, colorType, 
+      showWebStatus, showNetValueStatus, remark, 
+      realDate)
+    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{operateUserId,jdbcType=BIGINT}, #{operateName,jdbcType=VARCHAR}, #{realTradeMoney,jdbcType=DECIMAL}, 
+      #{realTradeNetValue,jdbcType=DECIMAL}, #{realTradeShare,jdbcType=DECIMAL}, #{colorType,jdbcType=INTEGER}, 
+      #{showWebStatus,jdbcType=INTEGER}, #{showNetValueStatus,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{realDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true"  keyProperty="id"  parameterType="com.fof.entity.TradeFlowReal">
+    insert into trade_flow_real
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+      <if test="operateUserId != null">
+        operateUserId,
+      </if>
+      <if test="operateName != null">
+        operateName,
+      </if>
+      <if test="realTradeMoney != null">
+        realTradeMoney,
+      </if>
+      <if test="realTradeNetValue != null">
+        realTradeNetValue,
+      </if>
+      <if test="realTradeShare != null">
+        realTradeShare,
+      </if>
+      <if test="colorType != null">
+        colorType,
+      </if>
+      <if test="showWebStatus != null">
+        showWebStatus,
+      </if>
+      <if test="showNetValueStatus != null">
+        showNetValueStatus,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="realDate != null">
+        realDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateUserId != null">
+        #{operateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operateName != null">
+        #{operateName,jdbcType=VARCHAR},
+      </if>
+      <if test="realTradeMoney != null">
+        #{realTradeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="realTradeNetValue != null">
+        #{realTradeNetValue,jdbcType=DECIMAL},
+      </if>
+      <if test="realTradeShare != null">
+        #{realTradeShare,jdbcType=DECIMAL},
+      </if>
+      <if test="colorType != null">
+        #{colorType,jdbcType=INTEGER},
+      </if>
+      <if test="showWebStatus != null">
+        #{showWebStatus,jdbcType=INTEGER},
+      </if>
+      <if test="showNetValueStatus != null">
+        #{showNetValueStatus,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="realDate != null">
+        #{realDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fof.entity.TradeFlowReal">
+    update trade_flow_real
+   <trim prefix="set" suffixOverrides=",">
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateUserId != null">
+        operateUserId = #{operateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="operateName != null">
+        operateName = #{operateName,jdbcType=VARCHAR},
+      </if>
+      <if test="realTradeMoney != null">
+        realTradeMoney = #{realTradeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="realTradeNetValue != null">
+        realTradeNetValue = #{realTradeNetValue,jdbcType=DECIMAL},
+      </if>
+      <if test="realTradeShare != null">
+        realTradeShare = #{realTradeShare,jdbcType=DECIMAL},
+      </if>
+      <if test="colorType != null">
+        colorType = #{colorType,jdbcType=INTEGER},
+      </if>
+      <if test="showWebStatus != null">
+        showWebStatus = #{showWebStatus,jdbcType=INTEGER},
+      </if>
+      <if test="showNetValueStatus != null">
+        showNetValueStatus = #{showNetValueStatus,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="realDate != null">
+        realDate = #{realDate,jdbcType=DATE},
+      </if>
+   </trim>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+   <select id="selectOneByCondition" resultType="com.fof.entity.TradeFlowReal">
+       select 
+      <include refid="Base_Column_List" />
+    from trade_flow_real
+			<where>
+		       
+      <if test="operateUserId != null">
+      and  operateUserId = #{operateUserId,jdbcType=BIGINT}
+      </if>
+   
+      <if test="colorType != null">
+       and colorType = #{colorType,jdbcType=INTEGER}
+      </if>
+      <if test="showWebStatus != null">
+      and  showWebStatus = #{showWebStatus,jdbcType=INTEGER}
+      </if>
+      <if test="showNetValueStatus != null">
+       and  showNetValueStatus = #{showNetValueStatus,jdbcType=INTEGER}
+      </if>
+     
+   	  </where>
+   	   order by id desc 
+       limit 1 ;
+	</select>
+	   <select id="selectListByConditionss" resultType="com.fof.entity.TradeFlowReal">
+        select 
+      <include refid="Base_Column_List" />
+    from trade_flow_real
+			<where>
+		       
+      <if test="operateUserId != null">
+      and  operateUserId = #{operateUserId,jdbcType=BIGINT}
+      </if>
+   
+      <if test="colorType != null">
+       and colorType = #{colorType,jdbcType=INTEGER}
+      </if>
+      <if test="showWebStatus != null">
+      and  showWebStatus = #{showWebStatus,jdbcType=INTEGER}
+      </if>
+      <if test="showNetValueStatus != null">
+       and  showNetValueStatus = #{showNetValueStatus,jdbcType=INTEGER}
+      </if>
+   	 </where>
+   	   order by id desc ;
+	</select>
+	
+	
+	
+
+</mapper>

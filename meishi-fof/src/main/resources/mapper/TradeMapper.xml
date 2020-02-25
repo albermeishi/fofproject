@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fof.dao.TradeMapper">
+
+
+<sql id="Base_Column_List">
+    id, simuCompanyId, simuCompanyName, simuProductId, simuProductName, fofCompanyId, 
+    fofCompanyName, fofProductId, fofProductName, createTime, updateTime, totalTradeMoney, 
+    totalShare
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long"  resultType="com.fof.entity.Trade">
+    select 
+    <include refid="Base_Column_List" />
+    from trade
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+ 
+<insert id="insert" parameterType="com.fof.entity.Trade">
+    insert into trade (simuCompanyId, simuCompanyName, 
+      simuProductId, simuProductName, fofCompanyId, 
+      fofCompanyName, fofProductId, fofProductName, 
+      createTime, updateTime, totalTradeMoney, 
+      totalShare)
+    values (#{simuCompanyId,jdbcType=BIGINT}, #{simuCompanyName,jdbcType=VARCHAR}, 
+      #{simuProductId,jdbcType=BIGINT}, #{simuProductName,jdbcType=VARCHAR}, #{fofCompanyId,jdbcType=BIGINT}, 
+      #{fofCompanyName,jdbcType=VARCHAR}, #{fofProductId,jdbcType=BIGINT}, #{fofProductName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{totalTradeMoney,jdbcType=DECIMAL}, 
+      #{totalShare,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true"  keyProperty="id"  parameterType="com.fof.entity.Trade">
+    insert into trade
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="simuCompanyId != null">
+        simuCompanyId,
+      </if>
+      <if test="simuCompanyName != null">
+        simuCompanyName,
+      </if>
+      <if test="simuProductId != null">
+        simuProductId,
+      </if>
+      <if test="simuProductName != null">
+        simuProductName,
+      </if>
+      <if test="fofCompanyId != null">
+        fofCompanyId,
+      </if>
+      <if test="fofCompanyName != null">
+        fofCompanyName,
+      </if>
+      <if test="fofProductId != null">
+        fofProductId,
+      </if>
+      <if test="fofProductName != null">
+        fofProductName,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+      <if test="totalTradeMoney != null">
+        totalTradeMoney,
+      </if>
+      <if test="totalShare != null">
+        totalShare,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="simuCompanyId != null">
+        #{simuCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="simuCompanyName != null">
+        #{simuCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="simuProductId != null">
+        #{simuProductId,jdbcType=BIGINT},
+      </if>
+      <if test="simuProductName != null">
+        #{simuProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="fofCompanyId != null">
+        #{fofCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="fofCompanyName != null">
+        #{fofCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="fofProductId != null">
+        #{fofProductId,jdbcType=BIGINT},
+      </if>
+      <if test="fofProductName != null">
+        #{fofProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalTradeMoney != null">
+        #{totalTradeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="totalShare != null">
+        #{totalShare,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fof.entity.Trade">
+    update trade
+   <trim prefix="set" suffixOverrides=",">
+      <if test="simuCompanyId != null">
+        simuCompanyId = #{simuCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="simuCompanyName != null">
+        simuCompanyName = #{simuCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="simuProductId != null">
+        simuProductId = #{simuProductId,jdbcType=BIGINT},
+      </if>
+      <if test="simuProductName != null">
+        simuProductName = #{simuProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="fofCompanyId != null">
+        fofCompanyId = #{fofCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="fofCompanyName != null">
+        fofCompanyName = #{fofCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="fofProductId != null">
+        fofProductId = #{fofProductId,jdbcType=BIGINT},
+      </if>
+      <if test="fofProductName != null">
+        fofProductName = #{fofProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalTradeMoney != null">
+        totalTradeMoney = #{totalTradeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="totalShare != null">
+        totalShare = #{totalShare,jdbcType=DECIMAL},
+      </if>
+   
+   </trim>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+ 
+  <select id="selectOneByCondition" resultType="com.fof.entity.Trade">
+      select 
+     <include refid="Base_Column_List" />
+    from trade
+		<where>
+		      <if test="simuCompanyId != null">
+        and simuCompanyId = #{simuCompanyId,jdbcType=BIGINT}
+      </if>
+      <if test="simuCompanyName != null">
+       and simuCompanyName = #{simuCompanyName,jdbcType=VARCHAR}
+      </if>
+      <if test="simuProductId != null">
+      and  simuProductId = #{simuProductId,jdbcType=BIGINT}
+      </if>
+      <if test="simuProductName != null">
+      and simuProductName = #{simuProductName,jdbcType=VARCHAR}
+      </if>
+      <if test="fofCompanyId != null">
+      and  fofCompanyId = #{fofCompanyId,jdbcType=BIGINT}
+      </if>
+      <if test="fofCompanyName != null">
+      and  fofCompanyName = #{fofCompanyName,jdbcType=VARCHAR}
+      </if>
+      <if test="fofProductId != null">
+      and  fofProductId = #{fofProductId,jdbcType=BIGINT}
+      </if>
+      <if test="fofProductName != null">
+       and fofProductName = #{fofProductName,jdbcType=VARCHAR}
+      </if>
+   	</where>
+   	   order by id desc 
+       limit 1 ;
+	</select>
+	  <select id="selectListByCondition" resultType="com.fof.entity.Trade">
+       select 
+     <include refid="Base_Column_List" />
+    from trade
+		<where>
+		      <if test="simuCompanyId != null">
+        and simuCompanyId = #{simuCompanyId,jdbcType=BIGINT}
+      </if>
+      <if test="simuCompanyName != null">
+       and simuCompanyName = #{simuCompanyName,jdbcType=VARCHAR}
+      </if>
+      <if test="simuProductId != null">
+      and  simuProductId = #{simuProductId,jdbcType=BIGINT}
+      </if>
+      <if test="simuProductName != null">
+      and simuProductName = #{simuProductName,jdbcType=VARCHAR}
+      </if>
+      <if test="fofCompanyId != null">
+      and  fofCompanyId = #{fofCompanyId,jdbcType=BIGINT}
+      </if>
+      <if test="fofCompanyName != null">
+      and  fofCompanyName = #{fofCompanyName,jdbcType=VARCHAR}
+      </if>
+      <if test="fofProductId != null">
+      and  fofProductId = #{fofProductId,jdbcType=BIGINT}
+      </if>
+      <if test="fofProductName != null">
+       and fofProductName = #{fofProductName,jdbcType=VARCHAR}
+      </if>
+   	</where>
+   	   order by id desc ;
+	</select>
+	
+	
+
+</mapper>

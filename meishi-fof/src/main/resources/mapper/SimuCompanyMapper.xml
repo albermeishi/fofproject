@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fof.dao.SimuCompanyMapper">
+ 
+<sql id="Base_Column_List">
+    id, userId, userName, sourceId, tagId, codeStatus, simuCompanyCode, simuCompanyName, 
+    registry, organizationType, registryMoney, conditionNumer, conditionOther, boffinId, 
+    boffiName, createTime, updateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long"  resultType="com.fof.entity.SimuCompany" >
+    select 
+    <include refid="Base_Column_List" />
+    from simu_company
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+<insert id="insert" useGeneratedKeys="true"  keyProperty="id" parameterType="com.fof.entity.SimuCompany">
+    insert into simu_company (userId, userName, 
+      sourceId, tagId, codeStatus, 
+      simuCompanyCode, simuCompanyName, registry, 
+      organizationType, registryMoney, conditionNumer, 
+      conditionOther, boffinId, boffiName, 
+      createTime, updateTime)
+     values (#{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, 
+      #{sourceId,jdbcType=BIGINT}, #{tagId,jdbcType=BIGINT}, #{codeStatus,jdbcType=INTEGER}, 
+      #{simuCompanyCode,jdbcType=VARCHAR}, #{simuCompanyName,jdbcType=VARCHAR}, #{registry,jdbcType=VARCHAR}, 
+      #{organizationType,jdbcType=VARCHAR}, #{registryMoney,jdbcType=VARCHAR}, #{conditionNumer,jdbcType=INTEGER}, 
+      #{conditionOther,jdbcType=INTEGER}, #{boffinId,jdbcType=BIGINT}, #{boffiName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fof.entity.SimuCompany">
+    insert into simu_company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="userName != null">
+        userName,
+      </if>
+      <if test="sourceId != null">
+        sourceId,
+      </if>
+      <if test="tagId != null">
+        tagId,
+      </if>
+      <if test="codeStatus != null">
+        codeStatus,
+      </if>
+      <if test="simuCompanyCode != null">
+        simuCompanyCode,
+      </if>
+      <if test="simuCompanyName != null">
+        simuCompanyName,
+      </if>
+      <if test="registry != null">
+        registry,
+      </if>
+      <if test="organizationType != null">
+        organizationType,
+      </if>
+      <if test="registryMoney != null">
+        registryMoney,
+      </if>
+      <if test="conditionNumer != null">
+        conditionNumer,
+      </if>
+      <if test="conditionOther != null">
+        conditionOther,
+      </if>
+      <if test="boffinId != null">
+        boffinId,
+      </if>
+      <if test="boffiName != null">
+        boffiName,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceId != null">
+        #{sourceId,jdbcType=BIGINT},
+      </if>
+      <if test="tagId != null">
+        #{tagId,jdbcType=BIGINT},
+      </if>
+      <if test="codeStatus != null">
+        #{codeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="simuCompanyCode != null">
+        #{simuCompanyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="simuCompanyName != null">
+        #{simuCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="registry != null">
+        #{registry,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationType != null">
+        #{organizationType,jdbcType=VARCHAR},
+      </if>
+      <if test="registryMoney != null">
+        #{registryMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionNumer != null">
+        #{conditionNumer,jdbcType=INTEGER},
+      </if>
+      <if test="conditionOther != null">
+        #{conditionOther,jdbcType=INTEGER},
+      </if>
+      <if test="boffinId != null">
+        #{boffinId,jdbcType=BIGINT},
+      </if>
+      <if test="boffiName != null">
+        #{boffiName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fof.entity.SimuCompany">
+    update simu_company
+    <trim prefix="set" suffixOverrides=",">
+      <if test="userId != null">
+        userId = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceId != null">
+        sourceId = #{sourceId,jdbcType=BIGINT},
+      </if>
+      <if test="tagId != null">
+        tagId = #{tagId,jdbcType=BIGINT},
+      </if>
+      <if test="codeStatus != null">
+        codeStatus = #{codeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="simuCompanyCode != null">
+        simuCompanyCode = #{simuCompanyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="simuCompanyName != null">
+        simuCompanyName = #{simuCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="registry != null">
+        registry = #{registry,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationType != null">
+        organizationType = #{organizationType,jdbcType=VARCHAR},
+      </if>
+      <if test="registryMoney != null">
+        registryMoney = #{registryMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionNumer != null">
+        conditionNumer = #{conditionNumer,jdbcType=INTEGER},
+      </if>
+      <if test="conditionOther != null">
+        conditionOther = #{conditionOther,jdbcType=INTEGER},
+      </if>
+      <if test="boffinId != null">
+        boffinId = #{boffinId,jdbcType=BIGINT},
+      </if>
+      <if test="boffiName != null">
+        boffiName = #{boffiName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+  
+ </trim>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectOneByCondition" resultType="com.fof.entity.SimuCompany">
+       select 
+    <include refid="Base_Column_List" />
+    from simu_company
+			<where>
+		          <if test="userId != null">
+       and userId = #{userId,jdbcType=BIGINT}
+      </if>
+      <if test="sourceId != null">
+      and  sourceId = #{sourceId,jdbcType=BIGINT}
+      </if>
+      <if test="tagId != null">
+      and   tagId = #{tagId,jdbcType=BIGINT}
+      </if>
+      <if test="codeStatus != null">
+      and  codeStatus = #{codeStatus,jdbcType=INTEGER}
+      </if>
+      <if test="simuCompanyCode != null">
+      and  simuCompanyCode = #{simuCompanyCode,jdbcType=VARCHAR}
+      </if>
+      <if test="simuCompanyName != null">
+      and  simuCompanyName = #{simuCompanyName,jdbcType=VARCHAR}
+      </if>
+
+      <if test="boffinId != null">
+       and boffinId = #{boffinId,jdbcType=BIGINT}
+      </if>
+  
+   	  </where>
+   	   order by id desc 
+       limit 1 ;
+	</select>
+	  <select id="selectListByCondition" resultType="com.fof.entity.SimuCompany">
+       select 
+    <include refid="Base_Column_List" />
+    from simu_company
+			<where>
+		         <if test="userId != null">
+       and userId = #{userId,jdbcType=BIGINT}
+      </if>
+      <if test="sourceId != null">
+      and  sourceId = #{sourceId,jdbcType=BIGINT}
+      </if>
+      <if test="tagId != null">
+      and   tagId = #{tagId,jdbcType=BIGINT}
+      </if>
+      <if test="codeStatus != null">
+      and  codeStatus = #{codeStatus,jdbcType=INTEGER}
+      </if>
+      <if test="simuCompanyCode != null">
+      and  simuCompanyCode = #{simuCompanyCode,jdbcType=VARCHAR}
+      </if>
+      <if test="simuCompanyName != null">
+      and  simuCompanyName = #{simuCompanyName,jdbcType=VARCHAR}
+      </if>
+
+      <if test="boffinId != null">
+       and boffinId = #{boffinId,jdbcType=BIGINT}
+      </if>
+   			 </where>
+   	   order by id desc ;
+	</select>
+	
+
+</mapper>
