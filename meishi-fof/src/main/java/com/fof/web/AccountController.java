@@ -1,5 +1,6 @@
 
 package com.fof.web;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fof.common.dtos.req.tradeflow.TradeFlowReq;
 import com.fof.dao.AccountMapper;
 import com.fof.entity.Account;
-import com.fof.exception.ServiceException;
 import com.fof.response.ResponseData;
 import com.fof.service.AccountService;
 @RestController
@@ -28,12 +29,13 @@ public class AccountController {
     @Autowired
     AccountMapper accountMapper;
     @PostMapping("/selectListByCondition")
-    public ResponseData<List<Account>> selectListByCondition(@RequestBody Account account) {
-    	List<Account> list=accountService.findAccountList();
-    	if(list.size()>0){
-    		throw new ServiceException(1003,"操作异常");
-    	}
-    	return new ResponseData<List<Account>>(list);
+    public ResponseData<List<TradeFlowReq>> selectListByCondition(@RequestBody Account account) {
+    	List<TradeFlowReq> list= new ArrayList<>(); 
+    			//accountService.findAccountList();
+//    	if(list.size()>0){
+//    		throw new ServiceException(1003,"操作异常");
+//    	}
+    	return new ResponseData<List<TradeFlowReq>>(list);
     	
         
         //return accountMapper.selectListByCondition(account);
