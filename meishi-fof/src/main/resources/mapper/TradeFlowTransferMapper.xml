@@ -130,6 +130,7 @@
     <include refid="Base_Column_List" />
      from trade_flow_transfer
 			<where>
+				1=1
 		          <if test="tradeflowId != null">
       and  tradeflowId = #{tradeflowId,jdbcType=BIGINT},
       </if>
@@ -148,6 +149,7 @@
     <include refid="Base_Column_List" />
      from trade_flow_transfer
 			<where>
+				1=1
 		          <if test="tradeflowId != null">
       and  tradeflowId = #{tradeflowId,jdbcType=BIGINT},
       </if>

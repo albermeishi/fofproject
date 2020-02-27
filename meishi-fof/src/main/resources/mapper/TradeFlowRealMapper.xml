@@ -3,7 +3,7 @@
 <mapper namespace="com.fof.dao.TradeFlowRealMapper">
 
 <sql id="Base_Column_List">
-    id, createTime, updateTime, operateUserId, operateName, realTradeMoney, realTradeNetValue, 
+    id,tradeflowId, createTime, updateTime, operateUserId, operateName, realTradeMoney, realTradeNetValue, 
     realTradeShare, colorType, showWebStatus, showNetValueStatus, remark, realDate
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.fof.entity.TradeFlowReal" >
@@ -14,12 +14,12 @@
   </select>
 
  <insert id="insert" useGeneratedKeys="true"  keyProperty="id"  parameterType="com.fof.entity.TradeFlowReal">
-    insert into trade_flow_real (createTime, updateTime, 
+    insert into trade_flow_real (tradeflowId,createTime, updateTime, 
       operateUserId, operateName, realTradeMoney, 
       realTradeNetValue, realTradeShare, colorType, 
       showWebStatus, showNetValueStatus, remark, 
       realDate)
-    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+    values (#{tradeflowId,jdbcType=BIGINT},#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{operateUserId,jdbcType=BIGINT}, #{operateName,jdbcType=VARCHAR}, #{realTradeMoney,jdbcType=DECIMAL}, 
       #{realTradeNetValue,jdbcType=DECIMAL}, #{realTradeShare,jdbcType=DECIMAL}, #{colorType,jdbcType=INTEGER}, 
       #{showWebStatus,jdbcType=INTEGER}, #{showNetValueStatus,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
@@ -30,6 +30,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+        <if test="tradeflowId != null">
+        tradeflowId,
       </if>
       <if test="createTime != null">
         createTime,
@@ -71,6 +74,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
+      </if>
+       <if test="tradeflowId != null">
+       #{tradeflowId,jdbcType=BIGINT},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -122,6 +128,10 @@
       <if test="operateUserId != null">
         operateUserId = #{operateUserId,jdbcType=BIGINT},
       </if>
+      <if test="tradeflowId != null">
+        tradeflowId = #{tradeflowId,jdbcType=BIGINT},
+      </if>
+      
       <if test="operateName != null">
         operateName = #{operateName,jdbcType=VARCHAR},
       </if>
@@ -162,6 +172,9 @@
       <if test="operateUserId != null">
       and  operateUserId = #{operateUserId,jdbcType=BIGINT}
       </if>
+         <if test="tradeflowId != null">
+      and  tradeflowId = #{tradeflowId,jdbcType=BIGINT}
+      </if>
    
       <if test="colorType != null">
        and colorType = #{colorType,jdbcType=INTEGER}
@@ -186,7 +199,9 @@
       <if test="operateUserId != null">
       and  operateUserId = #{operateUserId,jdbcType=BIGINT}
       </if>
-   
+      <if test="tradeflowId != null">
+      and  tradeflowId = #{tradeflowId,jdbcType=BIGINT}
+      </if>
       <if test="colorType != null">
        and colorType = #{colorType,jdbcType=INTEGER}
       </if>

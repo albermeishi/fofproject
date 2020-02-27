@@ -1,8 +1,11 @@
 package com.fof.web;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,12 +28,19 @@ import com.fof.common.dtos.rsp.FofProductRsp;
 import com.fof.common.dtos.rsp.RiskBookRsp;
 import com.fof.common.dtos.rsp.SimuProductRsp;
 import com.fof.common.dtos.rsp.UserRsp;
+import com.fof.entity.FofProduct;
+import com.fof.entity.SimuProduct;
 import com.fof.entity.TradeFlow;
 import com.fof.entity.TradeFlowImpress;
 import com.fof.entity.TradeFlowReal;
 import com.fof.entity.TradeFlowRemit;
 import com.fof.entity.TradeFlowTransfer;
 import com.fof.response.ResponseData;
+import com.fof.service.AccountService;
+import com.fof.service.FOFProductService;
+import com.fof.service.SimuProductService;
+import com.fof.service.TradeFlowService;
+import com.fof.service.UserService;
 
 /**
  * 上海美市科技有限公司开发部
@@ -43,6 +53,16 @@ import com.fof.response.ResponseData;
 @RequestMapping("/trade")
 public class TradeFlowController2 {
 	
+	
+    @Autowired
+    UserService userService;
+    
+    @Autowired
+    FOFProductService fOFProductService;
+    @Autowired
+    SimuProductService simuProductService;
+    @Autowired
+    TradeFlowService tradeFlowService;
 	/**  
 	 * @Description:通过FOF母基金名称模糊查询母基金数据
 	 * @author alber
@@ -50,7 +70,9 @@ public class TradeFlowController2 {
 	 */
 	@PostMapping("/queryfofProductsByName")
 	public ResponseData<List<FofProductRsp>> queryfofProductsByName(@RequestParam(value = "searchName") String searchName){ 
-    	List<FofProductRsp> list= new ArrayList<>();
+		FofProduct record=new FofProduct();
+    	record.setProductName(searchName.trim());
+    	List<FofProductRsp> list=fOFProductService.queryfofProductsByName(record);
     	return new ResponseData<List<FofProductRsp>>(list);
 	}
 	/**  
@@ -60,9 +82,11 @@ public class TradeFlowController2 {
 	 */
 	@PostMapping("/querySimuProductsByName")
 	public ResponseData<List<SimuProductRsp>> querySimuProductsByName(@RequestParam(value = "searchName") String searchName){ 
-    	List<SimuProductRsp> list= new ArrayList<>();
+		SimuProduct record=new SimuProduct();
+		record.setProductName(searchName.trim()); 
+		List<SimuProductRsp> list= simuProductService.querySimuProductsByName(record);
     	return new ResponseData<List<SimuProductRsp>>(list);
-	} 
+	}
 	/**  
 	 * @Description:查询有效用户列表数据
 	 * @author alber
@@ -70,10 +94,9 @@ public class TradeFlowController2 {
 	 */
 	@GetMapping("/queryUserList")
 	public ResponseData<List<UserRsp>> queryUserList(){ 
-    	List<UserRsp> list= new ArrayList<>();
+    	List<UserRsp> list= userService.queryUserList();
     	return new ResponseData<List<UserRsp>>(list);
 	}
-	
 	/**  
 	 * @Description:认购基本信息保存
 	 * @author alber
@@ -81,9 +104,11 @@ public class TradeFlowController2 {
 	 */
 	@PostMapping("/saveOfferTrade")
 	public ResponseData<TradeFlow> saveOfferTrade(@RequestBody TradeFlowReq form){ 
-		TradeFlow tradeFlow=new TradeFlow();
-    	return new ResponseData<TradeFlow>(tradeFlow);
+		TradeFlow record=new TradeFlow();
+		BeanUtils.copyProperties(form, record);
+    	return new ResponseData<TradeFlow>(tradeFlowService.saveOfferTrade(record));
 	}
+	
 	/**  
 	 * @Description:通过交易流程id 查询基本信息
 	 * @author alber
@@ -92,10 +117,9 @@ public class TradeFlowController2 {
 	@PostMapping("/queryTradeFlowById")
 	public ResponseData<TradeFlow> queryTradeFlowById(@RequestParam(value = "tradeflowId") long tradeflowId){
 		TradeFlow tradeFlow=new TradeFlow();
+		tradeFlow=tradeFlowService.queryTradeFlowById(tradeflowId);
     	return new ResponseData<TradeFlow>(tradeFlow);
 	}
-	
-	
 	
 	/**  
 	 * @Description:认购材料信息保存
@@ -114,7 +138,7 @@ public class TradeFlowController2 {
 	 */
 	@PostMapping("/queryRiskBookInfo")
 	public ResponseData<RiskBookRsp> queryRiskBookInfo(@RequestBody RiskBookReq form){ 
-		RiskBookRsp riskBookRsp=new RiskBookRsp();
+		RiskBookRsp riskBookRsp=tradeFlowService.queryRiskBookInfo(form);
     	return new ResponseData<RiskBookRsp>(riskBookRsp);
 	}
 	/**  
@@ -124,7 +148,7 @@ public class TradeFlowController2 {
 	 */
 	@PostMapping("/queryContractBookInfo")
 	public ResponseData<ContractBookRsp> queryContractBookInfo(@RequestBody ContractBookReq form){ 
-		ContractBookRsp contractBookRsp=new ContractBookRsp();
+		ContractBookRsp contractBookRsp=tradeFlowService.queryContractBookInfo(form);
     	return new ResponseData<ContractBookRsp>(contractBookRsp);
 	}
 	
@@ -155,10 +179,9 @@ public class TradeFlowController2 {
 	 */
 	@PostMapping("/queryFlowImpressListByFlowId")
 	public ResponseData<List<TradeFlowImpress>> queryFlowImpressListByFlowId(@RequestParam(value = "tradeflowId") long tradeflowId){ 
-    	List<TradeFlowImpress> list= new ArrayList<>();
+    	List<TradeFlowImpress> list= tradeFlowService.queryFlowImpressListByFlowId(tradeflowId);
     	return new ResponseData<List<TradeFlowImpress>>(list);
 	}
-	
 	/**  
 	 * @Description:通过交易流程Id 查询 打款信息
 	 * @author alber
@@ -166,9 +189,10 @@ public class TradeFlowController2 {
 	 */
 	@PostMapping("/queryTradeFlowRemitByFlowId")
 	public ResponseData<TradeFlowRemit> queryTradeFlowRemitByFlowId(@RequestParam(value = "tradeflowId") long tradeflowId){
-		TradeFlowRemit tradeFlowRemit=new TradeFlowRemit();
-    	return new ResponseData<TradeFlowRemit>(tradeFlowRemit);
+		TradeFlowRemit record =tradeFlowService.queryTradeFlowRemitByFlowId(tradeflowId);
+    	return new ResponseData<TradeFlowRemit>(record);
 	}
+	
 	/**  
 	 * @Description:认购 打款信息保存
 	 * @author alber
@@ -186,8 +210,8 @@ public class TradeFlowController2 {
 	 */
 	@PostMapping("/queryTradeFlowTransferByFlowId")
 	public ResponseData<TradeFlowTransfer> queryTradeFlowTransferByFlowId(@RequestParam(value = "tradeflowId") long tradeflowId){
-		TradeFlowTransfer tradeFlowTransfer=new TradeFlowTransfer();
-    	return new ResponseData<TradeFlowTransfer>(tradeFlowTransfer);
+		TradeFlowTransfer record=tradeFlowService.queryTradeFlowTransferByFlowId(tradeflowId);
+    	return new ResponseData<TradeFlowTransfer>(record);
 	}
 	/**  
 	 * @Description:认购运营划款确认保存

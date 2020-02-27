@@ -3,6 +3,8 @@ package com.fof.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,21 +25,27 @@ import com.fof.service.AccountService;
 @SuppressWarnings(value={"unchecked", "deprecation"})
 public class AccountController {
 
-	
+	private  Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired
     AccountService accountService;
     @Autowired
     AccountMapper accountMapper;
     @PostMapping("/selectListByCondition")
-    public ResponseData<List<TradeFlowReq>> selectListByCondition(@RequestBody Account account) {
-    	List<TradeFlowReq> list= new ArrayList<>(); 
-    			//accountService.findAccountList();
+    public   List<Account>  selectListByCondition(@RequestBody Account account) {
+    	List<Account> list= new ArrayList<>(); 
+    	Account account2=new Account();
+    	account2.setMoney(18.4); 
+    	account2.setName("122");
+    	account2.setId(1);
+    	log.info("查询指定角色的权限参数："+account);
+    	list.add(account2);
+    	return list;
+    	//accountService.findAccountList();
 //    	if(list.size()>0){
 //    		throw new ServiceException(1003,"操作异常");
 //    	}
-    	return new ResponseData<List<TradeFlowReq>>(list);
+    	//return new ResponseData<List<TradeFlowReq>>(list);
     	
-        
         //return accountMapper.selectListByCondition(account);
     }
     @PostMapping("/selectOneByCondition")
