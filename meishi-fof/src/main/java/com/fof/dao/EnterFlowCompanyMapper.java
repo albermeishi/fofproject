@@ -18,6 +18,7 @@ public interface EnterFlowCompanyMapper {
    
    
     EnterFlowCompany selectOneByCondition(EnterFlowCompany record);
+
     List<EnterFlowCompany> selectListByCondition(EnterFlowCompany record);
     
     
