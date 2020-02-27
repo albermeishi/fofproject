@@ -1,6 +1,13 @@
 package com.fof.service.impl;
 
+import com.fof.common.dtos.rsp.SimuProductRsp;
+import com.fof.dao.SimuProductMapper;
+import com.fof.entity.SimuProduct;
 import com.fof.service.SimuProductService;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,4 +19,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SimuProductServiceImpl implements SimuProductService {
+   @Autowired SimuProductMapper  simuProductMapper;
+   @Override
+   public List<SimuProductRsp> querySimuProductsByName(SimuProduct record){
+	 return  simuProductMapper.querySimuProductsByName(record) ;
+	} 
 }

@@ -276,7 +276,7 @@
 <select id="selectOneByCondition" resultType="com.fof.entity.EnterFlowCompany">
     select 
    <include refid="Base_Column_List" />
-    from enter_flow_companys
+    from enter_flow_company
 			<where>
 		             <if test="tagId != null">
       and  tagId = #{tagId,jdbcType=BIGINT}
@@ -324,7 +324,7 @@
   <select id="selectListByCondition" resultType="com.fof.entity.EnterFlowCompany">
     select
    <include refid="Base_Column_List" />
-    from enter_flow_companys
+    from enter_flow_company
 		<where>
 		            <if test="tagId != null">
       and  tagId = #{tagId,jdbcType=BIGINT}
