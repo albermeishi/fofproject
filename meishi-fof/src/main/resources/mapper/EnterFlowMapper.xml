@@ -2,19 +2,53 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fof.dao.EnterFlowMapper">
 
-<sql id="Base_Column_List">
-    id, userId, userName, simuCompanyId, simuCompanyName, simuCodeStatus, simuProductId, 
-    simuProductCodeStatus, simuProductName, enterStatus, enterTypeStatus, enterType, 
-    currentFlowCode, curentFlowCodeText, fofOperatorId, fofOperatorName, boffinId, boffinIdName, 
-    simuOperatorId, simuOperatorName, simuOperatorTime, createTime, updateTime, riskResult
+    <sql id="Base_Column_List">
+        id, userId, userName, simuCompanyId, simuCompanyName, simuCodeStatus, simuProductId,
+        simuProductCodeStatus, simuProductName, enterStatus, enterTypeStatus, enterType,
+        currentFlowCode, curentFlowCodeText, fofOperatorId, fofOperatorName, boffinId, boffinIdName,
+        simuOperatorId, simuOperatorName, simuOperatorTime, createTime, updateTime, riskResult
   </sql>
   
-<select id="selectByPrimaryKey" parameterType="java.lang.Long"  resultType="com.fof.entity.EnterFlow">
-    select 
-    <include refid="Base_Column_List" />
-    from enter_flow
-    where id = #{id,jdbcType=BIGINT}
-  </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long"  resultType="com.fof.entity.EnterFlow">
+        select
+        <include refid="Base_Column_List" />
+        from enter_flow
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <sql id="condition">
+        <if test="search != null">
+            <where>
+                <if test="search.userId != null"> and userId = #{search.userId} </if>
+                <if test="search.userName != null"> and userName = #{search.userName} </if>
+                <if test="search.simuCompanyId != null"> and simuCompanyId = #{search.simuCompanyId}  </if>
+                <if test="search.simuCompanyName != null"> and  simuCompanyName = #{search.simuCompanyName}  </if>
+                <if test="search.simuCodeStatus != null"> and simuCodeStatus = #{search.simuCodeStatus}  </if>
+                <if test="search.simuProductId != null"> and simuProductId = #{search.simuProductId}  </if>
+                <if test="search.simuProductCodeStatus != null"> and simuProductCodeStatus = #{search.simuProductCodeStatus}  </if>
+                <if test="search.simuProductName != null"> and simuProductName = #{search.simuProductName}  </if>
+                <if test="search.enterStatus != null"> and enterStatus = #{search.enterStatus} </if>
+                <if test="search.enterTypeStatus != null"> and enterTypeStatus = #{search.enterTypeStatus} </if>
+                <if test="search.enterType != null"> and enterType = #{search.enterType} </if>
+                <if test="search.currentFlowCode != null"> and currentFlowCode = #{search.currentFlowCode} </if>
+                <if test="search.fofOperatorId != null"> and fofOperatorId = #{search.fofOperatorId} </if>
+                <if test="search.fofOperatorName != null"> and fofOperatorName = #{search.fofOperatorName} </if>
+                <if test="search.boffinId != null"> and boffinId = #{search.boffinId} </if>
+                <if test="search.boffinIdName != null"> and boffinIdName = #{search.boffinIdName, </if>
+                <if test="search.simuOperatorId != null"> and simuOperatorId = #{search.simuOperatorId} </if>
+                <if test="search.simuOperatorName != null"> and simuOperatorName = #{search.simuOperatorName} </if>
+                <if test="search.simuOperatorTime != null"> and simuOperatorTime = #{search.simuOperatorTime} </if>
+                <if test="search.createTime != null"> and createTime = #{search.createTime} </if>
+                <if test="search.updateTime != null"> and updateTime = #{search.updateTime} </if>
+                <if test="search.riskResult != null"> and riskResult = #{search.riskResult} </if>
+            </where>
+        </if>
+    </sql>
+
+    <select id="getCount" parameterType="com.fof.entity.EnterFlow" resultType="java.lang.Integer">
+        select count(*) from enter_flow
+        <include refid="condition"/>
+    </select>
   
 <insert id="insert" useGeneratedKeys="true"  keyProperty="id"  parameterType="com.fof.entity.EnterFlow">
     insert into enter_flow (userId, userName, 
@@ -342,79 +376,85 @@
        limit 1 ;
 	</select>
 	 <select id="selectListByCondition" resultType="com.fof.entity.EnterFlow">
-       select 
-    <include refid="Base_Column_List" />
-    from enter_flow
-			<where>
-		       		         <if test="userId != null">
-      and  userId = #{userId,jdbcType=BIGINT}
-      </if>
-      <if test="userName != null">
-       and  userName = #{userName,jdbcType=VARCHAR}
-      </if>
-      <if test="simuCompanyId != null">
-      and  simuCompanyId = #{simuCompanyId,jdbcType=BIGINT},
-      </if>
-      <if test="simuCompanyName != null">
-       and   simuCompanyName = #{simuCompanyName,jdbcType=VARCHAR},
-      </if>
-      <if test="simuCodeStatus != null">
-      and  simuCodeStatus = #{simuCodeStatus,jdbcType=INTEGER},
-      </if>
-      <if test="simuProductId != null">
-      and  simuProductId = #{simuProductId,jdbcType=BIGINT},
-      </if>
-      <if test="simuProductCodeStatus != null">
-      and  simuProductCodeStatus = #{simuProductCodeStatus,jdbcType=INTEGER},
-      </if>
-      <if test="simuProductName != null">
-      and  simuProductName = #{simuProductName,jdbcType=VARCHAR},
-      </if>
-      <if test="enterStatus != null">
-      and  enterStatus = #{enterStatus,jdbcType=INTEGER}
-      </if>
-      <if test="enterTypeStatus != null">
-      and  enterTypeStatus = #{enterTypeStatus,jdbcType=INTEGER}
-      </if>
-      <if test="enterType != null">
-      and  enterType = #{enterType,jdbcType=INTEGER}
-      </if>
-      <if test="currentFlowCode != null">
-      and  currentFlowCode = #{currentFlowCode,jdbcType=INTEGER}
-      </if>
-      <if test="fofOperatorId != null">
-      and  fofOperatorId = #{fofOperatorId,jdbcType=BIGINT}
-      </if>
-      <if test="fofOperatorName != null">
-      and  fofOperatorName = #{fofOperatorName,jdbcType=VARCHAR}
-      </if>
-      <if test="boffinId != null">
-      and  boffinId = #{boffinId,jdbcType=BIGINT}
-      </if>
-      <if test="boffinIdName != null">
-      and  boffinIdName = #{boffinIdName,jdbcType=VARCHAR}
-      </if>
-      <if test="simuOperatorId != null">
-      and  simuOperatorId = #{simuOperatorId,jdbcType=BIGINT}
-      </if>
-      <if test="simuOperatorName != null">
-      and  simuOperatorName = #{simuOperatorName,jdbcType=VARCHAR}
-      </if>
-      <if test="simuOperatorTime != null">
-      and  simuOperatorTime = #{simuOperatorTime,jdbcType=TIMESTAMP}
-      </if>
-      <if test="createTime != null">
-       and  createTime = #{createTime,jdbcType=TIMESTAMP}
-      </if>
-      <if test="updateTime != null">
-      and  updateTime = #{updateTime,jdbcType=TIMESTAMP}
-      </if>
-      <if test="riskResult != null">
-      and  riskResult = #{riskResult,jdbcType=INTEGER}
-      </if>
-   </where>
+       select <include refid="Base_Column_List" /> from enter_flow
+       <where>
+		    <if test="userId != null">
+                and  userId = #{userId,jdbcType=BIGINT}
+            </if>
+            <if test="userName != null">
+                and  userName = #{userName,jdbcType=VARCHAR}
+            </if>
+            <if test="simuCompanyId != null">
+                and  simuCompanyId = #{simuCompanyId,jdbcType=BIGINT},
+            </if>
+            <if test="simuCompanyName != null">
+                and   simuCompanyName = #{simuCompanyName,jdbcType=VARCHAR},
+            </if>
+            <if test="simuCodeStatus != null">
+                and  simuCodeStatus = #{simuCodeStatus,jdbcType=INTEGER},
+            </if>
+            <if test="simuProductId != null">
+                and  simuProductId = #{simuProductId,jdbcType=BIGINT},
+            </if>
+            <if test="simuProductCodeStatus != null">
+                and  simuProductCodeStatus = #{simuProductCodeStatus,jdbcType=INTEGER},
+            </if>
+            <if test="simuProductName != null">
+                and  simuProductName = #{simuProductName,jdbcType=VARCHAR},
+            </if>
+            <if test="enterStatus != null">
+                and  enterStatus = #{enterStatus,jdbcType=INTEGER}
+            </if>
+            <if test="enterTypeStatus != null">
+                and  enterTypeStatus = #{enterTypeStatus,jdbcType=INTEGER}
+            </if>
+            <if test="enterType != null">
+                and  enterType = #{enterType,jdbcType=INTEGER}
+            </if>
+            <if test="currentFlowCode != null">
+                and  currentFlowCode = #{currentFlowCode,jdbcType=INTEGER}
+            </if>
+            <if test="fofOperatorId != null">
+                and  fofOperatorId = #{fofOperatorId,jdbcType=BIGINT}
+            </if>
+            <if test="fofOperatorName != null">
+                and  fofOperatorName = #{fofOperatorName,jdbcType=VARCHAR}
+            </if>
+            <if test="boffinId != null">
+                and  boffinId = #{boffinId,jdbcType=BIGINT}
+            </if>
+            <if test="boffinIdName != null">
+                and  boffinIdName = #{boffinIdName,jdbcType=VARCHAR}
+            </if>
+            <if test="simuOperatorId != null">
+                and  simuOperatorId = #{simuOperatorId,jdbcType=BIGINT}
+            </if>
+            <if test="simuOperatorName != null">
+                and  simuOperatorName = #{simuOperatorName,jdbcType=VARCHAR}
+            </if>
+            <if test="simuOperatorTime != null">
+                and  simuOperatorTime = #{simuOperatorTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="createTime != null">
+                and  createTime = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                and  updateTime = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="riskResult != null">
+                and  riskResult = #{riskResult,jdbcType=INTEGER}
+            </if>
+         </where>
    	   order by id desc ;
 	</select>
+
+    <select id="findByPage" parameterType="com.fof.common.bean.PageModel" resultType="com.fof.entity.EnterFlow">
+        select <include refid="Base_Column_List" /> from enter_flow
+        <include refid="condition" />
+        <if test="start != null and end != null">
+            limit #{start}, #{end}
+        </if>
+    </select>
 	
 
 </mapper>

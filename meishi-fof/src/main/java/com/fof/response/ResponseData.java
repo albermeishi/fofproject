@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import com.fof.enums.ExceptionEnum;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 @Getter
@@ -31,6 +32,10 @@ public class ResponseData<T> implements Serializable {
      */
     private int total;
 
+    public ResponseData() {
+        this.code = ExceptionEnum.SUCCESS.getCode();
+        this.message = ExceptionEnum.SUCCESS.getMessage();
+    }
     public ResponseData(T data) {
         this.code = ExceptionEnum.SUCCESS.getCode();
         this.message = ExceptionEnum.SUCCESS.getMessage();

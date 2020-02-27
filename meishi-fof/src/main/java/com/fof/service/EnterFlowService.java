@@ -1,9 +1,8 @@
 package com.fof.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
+import com.fof.entity.EnterFlow;
+import com.fof.common.bean.PageModel;
+import com.fof.response.ResponseData;
 
 /**
  * 上海美市科技有限公司开发部
@@ -13,4 +12,8 @@ import java.util.List;
  */
 public interface EnterFlowService {
 
+    /**
+     * 分页查询被投产品池管理列表
+     */
+    public ResponseData getPage(PageModel<EnterFlow> searchForm);
 }

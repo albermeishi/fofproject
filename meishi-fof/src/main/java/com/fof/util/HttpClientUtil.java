@@ -1,6 +1,5 @@
 package com.fof.util;
 
-import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.NameValuePair;
@@ -13,8 +12,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * HttpClientUtil
@@ -72,6 +73,20 @@ public class HttpClientUtil {
             method.releaseConnection();
         }
         return response.toString();
+    }
+
+
+    public static void main(String[] args) {
+        try {
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("id", UUID.randomUUID().toString());
+//            String get = doGet("http://localhost:8080/mundo/test", map);
+//            System.out.println("get请求调用成功，返回数据是：" + get);
+            String post = doPost("http://localhost:9082/account/selectByPrimaryKey/12", map, "utf-8");
+            System.out.println("post调用成功，返回数据是：" + post);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
     }
 }
 
