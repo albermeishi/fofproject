@@ -15,9 +15,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.build.source>1.8</project.build.source>
-		<project.build.target>1.8</project.build.target>
+			<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 	</properties>
@@ -56,6 +54,7 @@
 			<artifactId>druid</artifactId>
 			<version>1.0.25</version>
 		</dependency>
+	
 		<dependency>
       <groupId>joda-time</groupId>
       <artifactId>joda-time</artifactId>
@@ -77,6 +76,16 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.9</version>
 		</dependency>
+			<dependency>
+    <groupId>commons-collections</groupId>
+    <artifactId>commons-collections</artifactId>
+    <version>3.2.2</version>
+</dependency>
+		<dependency>
+    <groupId>commons-beanutils</groupId>
+    <artifactId>commons-beanutils</artifactId>
+    </dependency>
+		
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
@@ -105,29 +114,13 @@
 		</dependency>
 	</dependencies>
 	<build>
-	<defaultGoal>compile</defaultGoal>
 	<finalName>fof-service</finalName>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
+	          <groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-				<plugin>
-			    <groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-deploy-plugin</artifactId>
-			    <configuration>
-			        <skip>true</skip>
-			    </configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${project.build.source}</source>
-					<target>${project.build.target}</target>
-					<encoding>${project.build.sourceEncoding}</encoding>
-				</configuration>
-			</plugin>
+			
 			         <!--    <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>

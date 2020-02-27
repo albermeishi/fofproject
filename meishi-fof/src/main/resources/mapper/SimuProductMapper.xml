@@ -417,4 +417,16 @@
    	 </where>
    	  order by id desc ;
 	</select>
+	
+<select id="querySimuProductsByName" resultType="com.fof.common.dtos.rsp.FofProductRsp">
+SELECT id,simuCompanyName,simuCompanyId,productName FROM simu_product
+   <where>
+   	1=1
+   <if test="productName != null">
+      AND productName like CONCAT('%',#{productName},'%')
+   </if> 
+  </where>
+    order by id desc ;
+  </select> 
+	
 </mapper>

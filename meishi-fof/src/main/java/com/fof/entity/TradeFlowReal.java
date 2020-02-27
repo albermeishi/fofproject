@@ -8,8 +8,17 @@ public class TradeFlowReal implements Serializable {
     private Long id;
 
     private Date createTime;
+    private Long tradeflowId;
 
-    private Date updateTime;
+	public Long getTradeflowId() {
+		return tradeflowId;
+	}
+
+	public void setTradeflowId(Long tradeflowId) {
+		this.tradeflowId = tradeflowId;
+	}
+
+	private Date updateTime;
 
     private Long operateUserId;
 
